@@ -29,6 +29,7 @@ public class RegisterPanel {
         addComponents();
     }
 
+    //Setup the Components
     public static void setupComponents(){
 
         //Register Panel

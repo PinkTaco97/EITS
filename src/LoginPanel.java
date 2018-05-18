@@ -27,6 +27,7 @@ public class LoginPanel {
         addComponents();
     }
 
+    //Setup the Components
     public static void setupComponents(){
 
         //Login Panel

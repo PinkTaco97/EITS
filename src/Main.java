@@ -6,14 +6,14 @@ public class Main {
     //Create the Frame
     public static JFrame frame;
 
-    //Create the Panels
+    //Create the LoginPanel
     public static LoginPanel loginPanel;
+
+    //Create the RegisterPanel
     public static RegisterPanel registerPanel;
 
     //Colors
     public static final Color backgroundColor = new Color(255,255,255);
-
-
 
     public static void main(String[] args) {
         // write your code here
@@ -52,12 +52,16 @@ public class Main {
     //Create the Login Panel
     public static void createPanels(){
 
-        //Create the Panels
+        //Create the LoginPanel
         loginPanel = new LoginPanel();
+
+        //Create the RegisterPanel
         registerPanel = new RegisterPanel();
 
         //Add the LoginPanel to the frame
         frame.add(loginPanel.panel);
+
+        //Add the RegisterPanel to the frame
         frame.add(registerPanel.panel);
 
         //Refresh the frame
@@ -66,11 +70,45 @@ public class Main {
 
     //Login
     public static void Login(){
-        JOptionPane.showMessageDialog(frame,"Login");
+
+        //The username entered
+        String username = loginPanel.usernameInput.getText();
+
+        //The password entered
+        String password = new String (loginPanel.passwordField.getPassword());
+
+        //Alert the username and password
+        JOptionPane.showMessageDialog(frame,"Username: " + username + "\n" + "Password: " + password);
+
+        //Reset the Username InputField
+        loginPanel.usernameInput.setText("");
+
+        //Reset the Password InputField
+        loginPanel.passwordField.setText("");
     }
 
     //Register
     public static void Register(){
-        JOptionPane.showMessageDialog(frame, "Register");
+
+        //The username entered
+        String username = registerPanel.usernameInput.getText();
+
+        //The password entered
+        String password = new String (registerPanel.passwordInput.getPassword());
+
+        //The email entered
+        String email = registerPanel.emailInput.getText();
+
+        //Alert the username and password and email
+        JOptionPane.showMessageDialog(frame, "Username: " + username + "\n" + "Password: " + password + "\n" + "Email: " + email);
+
+        //Reset the Username InputField
+        registerPanel.usernameInput.setText("");
+
+        //Reset the Password InputField
+        registerPanel.passwordInput.setText("");
+
+        //Reset the Email InputField
+        registerPanel.emailInput.setText("");
     }
 }
