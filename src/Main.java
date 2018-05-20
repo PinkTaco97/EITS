@@ -18,6 +18,9 @@ public class Main {
     //Colors
     public static final Color backgroundColor = new Color(255,255,255);
 
+    //Logged In User
+    public static int userID = 0;
+
     public static void main(String[] args) {
         // write your code here
         createWindow();
@@ -80,14 +83,29 @@ public class Main {
         //The password entered
         String password = new String (loginPanel.passwordField.getPassword());
 
-        //Alert the username and password
-        JOptionPane.showMessageDialog(frame,"Username: " + username + "\n" + "Password: " + password);
+        //Login the user in
+        if(database.Login(username, password) > 0){
+            //The User Logged in
 
-        //Reset the Username InputField
-        loginPanel.usernameInput.setText("");
+            //Alert Login Successful
+            JOptionPane.showMessageDialog(frame, "Login Successful!");
 
-        //Reset the Password InputField
-        loginPanel.passwordField.setText("");
+            //Remove Login Panel
+            frame.remove(loginPanel.panel);
+
+            //Remove Register Panel
+            frame.remove(registerPanel.panel);
+
+            //Refresh the Frame
+            frame.repaint();
+            
+            //Alert Welcome the User
+            JOptionPane.showMessageDialog(frame, "Welcome to EITS\n" + "Please Select an Industry");
+
+        }else{
+            //Wrong Username
+            JOptionPane.showMessageDialog(frame, "Wrong Username or Password");
+        }
     }
 
     //Register

@@ -95,4 +95,39 @@ public class Database {
             System.err.println(ex.getMessage());
         }
     }
+
+    public int Login(String username, String password) {
+        //Try to connect to the database
+        try {
+
+            //Create Database Connection
+            Class.forName(DRIVER);
+            Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
+
+            String sql = "SELECT ID, Username, Password FROM Users";
+
+            //Create the java statement
+            Statement statement = con.createStatement();
+
+            //Execute the query and get the result
+            ResultSet row = statement.executeQuery(sql);
+
+            //Iterate through the results
+            while (row.next()) {
+                //Check each username in the UsersTable
+                if (row.getString("Username").equalsIgnoreCase(username)) {
+                    //Check the Password coresponding password
+                    if (row.getString("Password").equalsIgnoreCase(password)) {
+                        return row.getInt("ID");
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            //We got an Exception
+            System.err.println(ex.getMessage());
+        }
+
+        //Wrong Username or Password
+        return 0;
+    }
 }
