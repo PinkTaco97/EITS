@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.sql.*;
 
 public class Main {
 
@@ -110,7 +109,7 @@ public class Main {
                 //If the Email isnt empty
                 if(!email.isEmpty()){
                     //If the Email is valid
-                    if(email.equalsIgnoreCase("@") && email.equalsIgnoreCase(".com")){
+                    if(email.contains("@") && email.contains(".com")){
                         //If the Username is taken
                         if(database.isUsernameTaken(username)){
 
