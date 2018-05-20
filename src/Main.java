@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.sql.*;
 
 public class Main {
 
@@ -11,6 +12,9 @@ public class Main {
 
     //Create the RegisterPanel
     public static RegisterPanel registerPanel;
+
+    //Create the Database Class
+    public static Database database = new Database();
 
     //Colors
     public static final Color backgroundColor = new Color(255,255,255);
@@ -99,16 +103,47 @@ public class Main {
         //The email entered
         String email = registerPanel.emailInput.getText();
 
-        //Alert the username and password and email
-        JOptionPane.showMessageDialog(frame, "Username: " + username + "\n" + "Password: " + password + "\n" + "Email: " + email);
+        //If the Username isnt empty
+        if(!username.isEmpty()){
+            //If the Password isnt empty
+            if(!password.isEmpty()){
+                //If the Email isnt empty
+                if(!email.isEmpty()){
+                    //If the Email is valid
+                    if(email.equalsIgnoreCase("@") && email.equalsIgnoreCase(".com")){
+                        //If the Username is taken
+                        if(database.isUsernameTaken(username)){
 
-        //Reset the Username InputField
-        registerPanel.usernameInput.setText("");
+                            //Alert that the Username is taken
+                            JOptionPane.showMessageDialog(frame,"Username Taken");
 
-        //Reset the Password InputField
-        registerPanel.passwordInput.setText("");
-
-        //Reset the Email InputField
-        registerPanel.emailInput.setText("");
+                            //Reset Username InputField
+                            registerPanel.usernameInput.setText("");
+                        }
+                        //If the Username isnt taken
+                        else{
+                            //Insert the User into the database
+                            database.insertUser(username, password, email);
+                        }
+                    }
+                    else{
+                        //Email invaild
+                        JOptionPane.showMessageDialog(frame,"Email Invalid");
+                    }
+                }
+                else{
+                    //No Email
+                    JOptionPane.showMessageDialog(frame, "Please enter an Email");
+                }
+            }
+            else{
+                //No Password
+                JOptionPane.showMessageDialog(frame, "Please enter a Password");
+            }
+        }
+        else{
+            //No Username
+            JOptionPane.showMessageDialog(frame, "Please enter a Username");
+        }
     }
 }
