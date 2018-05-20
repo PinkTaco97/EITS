@@ -98,7 +98,7 @@ public class Main {
 
             //Refresh the Frame
             frame.repaint();
-            
+
             //Alert Welcome the User
             JOptionPane.showMessageDialog(frame, "Welcome to EITS\n" + "Please Select an Industry");
 

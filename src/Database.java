@@ -55,6 +55,9 @@ public class Database {
             //We got an Exception
             System.err.println(ex.getMessage());
 
+            //Alert Error
+            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+
         }
         return null;
     }
@@ -93,6 +96,9 @@ public class Database {
 
             //We got an Exception
             System.err.println(ex.getMessage());
+
+            //Alert Error
+            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
         }
     }
 
@@ -125,6 +131,9 @@ public class Database {
         } catch (Exception ex) {
             //We got an Exception
             System.err.println(ex.getMessage());
+
+            //Alert Error
+            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
         }
 
         //Wrong Username or Password
