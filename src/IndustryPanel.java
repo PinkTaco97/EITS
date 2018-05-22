@@ -13,7 +13,7 @@ public class IndustryPanel {
 
     //Fonts
     public static final String font = "Apple Casual";
-    public static Font h1 = new Font(font, Font.PLAIN, 75);
+    public static Font h1 = new Font(font, Font.PLAIN, 50);
     public static Font h2 = new Font(font, Font.PLAIN, 30);
 
     //Colors
@@ -28,8 +28,9 @@ public class IndustryPanel {
     public static void setupComponents(){
 
         //Login Panel
-        panel.setBounds(0,0,1000,750);
-        panel.setBackground(backgroundColor);
+        panel.setBounds(0,0,1000,112);
+        panel.setOpaque(true);
+        //panel.setBackground(backgroundColor);
 
         //NavBar
         navBar.setBounds(0, 0, 1000, 100);
@@ -42,14 +43,13 @@ public class IndustryPanel {
         //Login Button
         logoutBtn.setBounds(775, 12, 200, 75);
         logoutBtn.setFont(h2);
-        logoutBtn.setOpaque(true);
         logoutBtn.addActionListener(new ActionListener() {
 
             //When the Login button is clicked
             @Override
             public void actionPerformed(ActionEvent e) {
                 //your actions
-
+                Main.Logout();
             }
         });
     }

@@ -58,6 +58,14 @@ public class RegisterPanel {
         //Username Input
         usernameInput.setBounds(125, 200, 350, 50);
         usernameInput.setFont(h2);
+        usernameInput.addActionListener(new ActionListener(){
+
+            //When the enter key is pressed
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.Register();
+            }
+        });
 
         //Password Text
         passwordText.setBounds(125, 275, 300, 50);
@@ -67,6 +75,14 @@ public class RegisterPanel {
         //Password Input
         passwordInput.setBounds(125, 325, 350, 50);
         passwordInput.setFont(h2);
+        passwordInput.addActionListener(new ActionListener(){
+
+            //When the enter key is pressed
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.Register();
+            }
+        });
 
         //Email Text
         emailText.setBounds(125, 400, 300, 50);
@@ -76,6 +92,14 @@ public class RegisterPanel {
         //Email Input
         emailInput.setBounds(125, 450, 350, 50);
         emailInput.setFont(h2);
+        emailInput.addActionListener(new ActionListener(){
+
+            //When the enter key is pressed
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.Register();
+            }
+        });
 
         //Register Button
         registerBtn.setBounds(125, 525, 350, 75);

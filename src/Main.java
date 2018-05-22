@@ -71,6 +71,7 @@ public class Main {
 
             //Print the error to the console
             System.err.println(ex.getMessage());
+
         }
 
 
@@ -90,15 +91,20 @@ public class Main {
     //Create the Login Panel
     public static void createPanels(){
 
-        registerPanel.panel.setVisible(false);
-
+        //Set panels Visibility
         loginPanel.panel.setVisible(true);
+        registerPanel.panel.setVisible(false);
+        industryPanel.panel.setVisible(false);
+
 
         //Add the LoginPanel to the frame
         frame.add(loginPanel.panel);
 
         //Add the RegisterPanel to the frame
         frame.add(registerPanel.panel);
+
+        //Add Industry Panel
+        frame.add(industryPanel.panel);
 
         //Add the background to the frame
         frame.add(background);
@@ -139,20 +145,17 @@ public class Main {
                     //Alert Login Successful
                     JOptionPane.showMessageDialog(frame, "Login Successful!");
 
-                    //Remove Login Panel
-                    frame.remove(loginPanel.panel);
+                    //Hide Login Panel
+                    loginPanel.panel.setVisible(false);
 
-                    //Remove Register Panel
-                    frame.remove(registerPanel.panel);
+                    //Hide Register Panel
+                    registerPanel.panel.setVisible(false);
 
-                    //Add Industry Panel
-                    frame.add(industryPanel.panel);
-
-                    //Refresh the Frame
-                    frame.repaint();
+                    //Show Industry Panel
+                    industryPanel.panel.setVisible(true);
 
                     //Alert Welcome the User
-                    JOptionPane.showMessageDialog(frame, "Welcome to EITS\n" + "Please Select an Industry");
+                    //JOptionPane.showMessageDialog(frame, "Welcome to EITS\n" + "Please Select an Industry");
 
                 } else {
                     //Wrong Username
@@ -223,5 +226,17 @@ public class Main {
             //No Username
             JOptionPane.showMessageDialog(frame, "Please enter a Username");
         }
+    }
+
+    public static void Logout(){
+
+        //Hide Register Panel
+        registerPanel.panel.setVisible(false);
+
+        //Hide Industry Panel
+        industryPanel.panel.setVisible(false);
+
+        //Show Login Panel
+        loginPanel.panel.setVisible(true);
     }
 }

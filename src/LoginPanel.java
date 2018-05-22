@@ -65,6 +65,14 @@ public class LoginPanel {
         //Password Input
         passwordInput.setBounds(125, 375, 350, 50);
         passwordInput.setFont(h2);
+        passwordInput.addActionListener(new ActionListener(){
+
+            //When the enter key is pressed
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.Login();
+            }
+        });
 
         //Login Button
         loginBtn.setBounds(125, 525, 350, 75);
