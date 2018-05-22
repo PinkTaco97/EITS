@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Main {
 
@@ -7,16 +10,28 @@ public class Main {
     public static JFrame frame;
 
     //Create the LoginPanel
-    public static LoginPanel loginPanel;
+    public static LoginPanel loginPanel = new LoginPanel();
 
     //Create the RegisterPanel
-    public static RegisterPanel registerPanel;
+    public static RegisterPanel registerPanel = new RegisterPanel();
+
+    //Create the IndustryPanel
+    public static IndustryPanel industryPanel = new IndustryPanel();
 
     //Create the Database Class
     public static Database database = new Database();
 
     //Colors
     public static final Color backgroundColor = new Color(255,255,255);
+
+    //Background Image File
+    public static String bgImage = "src/background.jpg";
+
+    //Background Image Icon
+    public static ImageIcon backgroundImage = new ImageIcon();
+
+    //Background
+    public static JLabel background = new JLabel();
 
     //Logged In User
     public static int userID = 0;
@@ -39,7 +54,25 @@ public class Main {
         frame.setSize(1000,750);
 
         //Set the background color
-        frame.getContentPane().setBackground(backgroundColor);
+        //frame.getContentPane().setBackground(backgroundColor);
+
+        //Try to load the background image
+        try{
+
+            //Load the Background Image
+            BufferedImage image = ImageIO.read(new File(bgImage));
+
+            //Set the Background image to the background
+            backgroundImage.setImage(image);
+            background.setBounds(0,0,1000,750);
+            background.setIcon(backgroundImage);
+
+        }catch(Exception ex){
+
+            //Print the error to the console
+            System.err.println(ex.getMessage());
+        }
+
 
         //Set the layout
         frame.getContentPane().setLayout(null);
@@ -52,17 +85,14 @@ public class Main {
 
         //Set the resizability
         frame.setResizable(false);
-
     }
 
     //Create the Login Panel
     public static void createPanels(){
 
-        //Create the LoginPanel
-        loginPanel = new LoginPanel();
+        registerPanel.panel.setVisible(false);
 
-        //Create the RegisterPanel
-        registerPanel = new RegisterPanel();
+        loginPanel.panel.setVisible(true);
 
         //Add the LoginPanel to the frame
         frame.add(loginPanel.panel);
@@ -70,8 +100,23 @@ public class Main {
         //Add the RegisterPanel to the frame
         frame.add(registerPanel.panel);
 
+        //Add the background to the frame
+        frame.add(background);
+
         //Refresh the frame
         frame.repaint();
+    }
+
+    //Show the Register Form
+    public static void ShowRegister(){
+        loginPanel.panel.setVisible(false);
+        registerPanel.panel.setVisible(true);
+    }
+
+    //Show the Register Form
+    public static void ShowLogin(){
+        registerPanel.panel.setVisible(false);
+        loginPanel.panel.setVisible(true);
     }
 
     //Login
@@ -81,30 +126,46 @@ public class Main {
         String username = loginPanel.usernameInput.getText();
 
         //The password entered
-        String password = new String (loginPanel.passwordField.getPassword());
+        String password = new String (loginPanel.passwordInput.getPassword());
 
-        //Login the user in
-        if(database.Login(username, password) > 0){
-            //The User Logged in
+        //If the Username isnt empty
+        if(!username.isEmpty()) {
+            //If the Password isnt empty
+            if (!password.isEmpty()) {
+                //Login the user in
+                if (database.Login(username, password) > 0) {
+                    //The User Logged in
 
-            //Alert Login Successful
-            JOptionPane.showMessageDialog(frame, "Login Successful!");
+                    //Alert Login Successful
+                    JOptionPane.showMessageDialog(frame, "Login Successful!");
 
-            //Remove Login Panel
-            frame.remove(loginPanel.panel);
+                    //Remove Login Panel
+                    frame.remove(loginPanel.panel);
 
-            //Remove Register Panel
-            frame.remove(registerPanel.panel);
+                    //Remove Register Panel
+                    frame.remove(registerPanel.panel);
 
-            //Refresh the Frame
-            frame.repaint();
+                    //Add Industry Panel
+                    frame.add(industryPanel.panel);
 
-            //Alert Welcome the User
-            JOptionPane.showMessageDialog(frame, "Welcome to EITS\n" + "Please Select an Industry");
+                    //Refresh the Frame
+                    frame.repaint();
 
-        }else{
-            //Wrong Username
-            JOptionPane.showMessageDialog(frame, "Wrong Username or Password");
+                    //Alert Welcome the User
+                    JOptionPane.showMessageDialog(frame, "Welcome to EITS\n" + "Please Select an Industry");
+
+                } else {
+                    //Wrong Username
+                    JOptionPane.showMessageDialog(frame, "Wrong Username or Password");
+                }
+            } else{
+                //No Password
+                JOptionPane.showMessageDialog(frame, "Please enter a Password");
+            }
+        }
+        else{
+            //No Username
+            JOptionPane.showMessageDialog(frame, "Please enter a Username");
         }
     }
 
