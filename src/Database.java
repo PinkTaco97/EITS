@@ -124,6 +124,7 @@ public class Database {
                 if (row.getString("Username").equalsIgnoreCase(username)) {
                     //Check the Password coresponding password
                     if (row.getString("Password").equalsIgnoreCase(password)) {
+                        Main.userID = row.getInt("ID");
                         return row.getInt("ID");
                     }
                 }

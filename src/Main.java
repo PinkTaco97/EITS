@@ -15,8 +15,8 @@ public class Main {
     //Create the RegisterPanel
     public static RegisterPanel registerPanel = new RegisterPanel();
 
-    //Create the IndustryPanel
-    public static IndustryPanel industryPanel = new IndustryPanel();
+    //Create the MainPanel
+    public static MainPanel mainPanel = new MainPanel();
 
     //Create the Database Class
     public static Database database = new Database();
@@ -25,7 +25,7 @@ public class Main {
     public static final Color backgroundColor = new Color(255,255,255);
 
     //Background Image File
-    public static String bgImage = "src/background.jpg";
+    public static String bgImage = "images/background.jpeg";
 
     //Background Image Icon
     public static ImageIcon backgroundImage = new ImageIcon();
@@ -74,7 +74,6 @@ public class Main {
 
         }
 
-
         //Set the layout
         frame.getContentPane().setLayout(null);
 
@@ -94,8 +93,7 @@ public class Main {
         //Set panels Visibility
         loginPanel.panel.setVisible(true);
         registerPanel.panel.setVisible(false);
-        industryPanel.panel.setVisible(false);
-
+        mainPanel.panel.setVisible(false);
 
         //Add the LoginPanel to the frame
         frame.add(loginPanel.panel);
@@ -103,8 +101,8 @@ public class Main {
         //Add the RegisterPanel to the frame
         frame.add(registerPanel.panel);
 
-        //Add Industry Panel
-        frame.add(industryPanel.panel);
+        //Add the MainPanel to the frame
+        frame.add(mainPanel.panel);
 
         //Add the background to the frame
         frame.add(background);
@@ -142,6 +140,9 @@ public class Main {
                 if (database.Login(username, password) > 0) {
                     //The User Logged in
 
+                    //Load the users Info
+                    mainPanel.loadUser(userID);
+
                     //Alert Login Successful
                     JOptionPane.showMessageDialog(frame, "Login Successful!");
 
@@ -151,11 +152,8 @@ public class Main {
                     //Hide Register Panel
                     registerPanel.panel.setVisible(false);
 
-                    //Show Industry Panel
-                    industryPanel.panel.setVisible(true);
-
-                    //Alert Welcome the User
-                    //JOptionPane.showMessageDialog(frame, "Welcome to EITS\n" + "Please Select an Industry");
+                    //Show Main Panel
+                    mainPanel.panel.setVisible(true);
 
                 } else {
                     //Wrong Username
@@ -205,6 +203,8 @@ public class Main {
                         else{
                             //Insert the User into the database
                             database.insertUser(username, password, email);
+
+                            ShowLogin();
                         }
                     }
                     else{
@@ -234,7 +234,7 @@ public class Main {
         registerPanel.panel.setVisible(false);
 
         //Hide Industry Panel
-        industryPanel.panel.setVisible(false);
+        mainPanel.panel.setVisible(false);
 
         //Show Login Panel
         loginPanel.panel.setVisible(true);

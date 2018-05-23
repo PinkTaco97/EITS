@@ -1,7 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class RegisterPanel {
 
@@ -15,8 +18,14 @@ public class RegisterPanel {
     public static JPasswordField passwordInput = new JPasswordField();
     public static JLabel emailText = new JLabel("Email");
     public static JTextField emailInput = new JTextField();
-    public static JButton registerBtn = new JButton("Register");
-    public static JButton loginBtn = new JButton("Login");
+    public static JButton registerBtn = new JButton();
+    public static JButton loginBtn = new JButton();
+
+    //Images
+    public static BufferedImage loginBtn_Unselected;
+    public static BufferedImage loginBtn_Selected;
+    public static BufferedImage registerBtn_Unselected;
+    public static BufferedImage registerBtn_Selected;
 
     //Font
     public static final String font = "Apple Casual";
@@ -29,8 +38,26 @@ public class RegisterPanel {
     public static final Color backgroundColor = new Color(51, 51,51);
 
     public RegisterPanel(){
+        loadImages();
         setupComponents();
         addComponents();
+    }
+
+    public static void loadImages(){
+        //try to load the Images
+        try {
+
+            //Login Images
+            loginBtn_Unselected = ImageIO.read(new File("images/LoginBtn_Unselected.png"));
+            loginBtn_Selected = ImageIO.read(new File("images/LoginBtn_Selected.png"));
+
+            //Register Images
+            registerBtn_Unselected = ImageIO.read(new File("images/RegisterBtn_Unselected.png"));
+            registerBtn_Selected = ImageIO.read(new File("images/RegisterBtn_Selected.png"));
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     //Setup the Components
@@ -104,6 +131,9 @@ public class RegisterPanel {
         //Register Button
         registerBtn.setBounds(125, 525, 350, 75);
         registerBtn.setFont(h2);
+        registerBtn.setIcon(new ImageIcon(registerBtn_Unselected));
+        registerBtn.setRolloverIcon(new ImageIcon(registerBtn_Selected));
+        registerBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         registerBtn.addActionListener(new ActionListener() {
 
             //When the Register button is clicked
@@ -116,7 +146,9 @@ public class RegisterPanel {
 
         //Login Button
         loginBtn.setBounds(125, 625, 350, 75);
-        loginBtn.setFont(h2);
+        loginBtn.setFont(h2);loginBtn.setIcon(new ImageIcon(loginBtn_Unselected));
+        loginBtn.setRolloverIcon(new ImageIcon(loginBtn_Selected));
+        loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         loginBtn.addActionListener(new ActionListener() {
 
             //When the Register button is clicked
