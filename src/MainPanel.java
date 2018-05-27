@@ -11,21 +11,19 @@ public class MainPanel {
 
     //Components
     public static JPanel panel = new JPanel();
-    public static JPanel header = new JPanel();
-    public static JLabel heading = new JLabel(" Welcome Page");
-    public static JButton logoutBtn = new JButton();
     public static JPanel navbar = new JPanel();
     public static JLabel welcome = new JLabel("Welcome, ", JLabel.CENTER);
     public static JButton menuItem1 = new JButton();
     public static JButton menuItem2 = new JButton();
+    public static JButton logoutBtn = new JButton();
 
     //Images
-    public static BufferedImage logoutBtn_Unselected;
-    public static BufferedImage logoutBtn_Selected;
     public static BufferedImage findCourse_Unselected;
     public static BufferedImage findCourse_Selected;
     public static BufferedImage accountSettings_Unselected;
     public static BufferedImage accountSettings_Selected;
+    public static BufferedImage logoutBtn_Unselected;
+    public static BufferedImage logoutBtn_Selected;
 
     //Fonts
     public static final String fontFamily = "Apple Casual";
@@ -74,7 +72,7 @@ public class MainPanel {
             System.err.println(ex.getMessage());
 
             //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+            JOptionPane.showMessageDialog(Main.frame, "Error Connecting to Database! \n" + ex.getMessage());
         }
     }
 
@@ -96,7 +94,7 @@ public class MainPanel {
             accountSettings_Selected = ImageIO.read(new File("images/AccountSettings_Selected.png"));
 
         } catch (Exception ex) {
-            System.out.println(ex);
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -105,17 +103,47 @@ public class MainPanel {
 
         //Panel
         panel.setBounds(0, 0, 1000, 750);
+        panel.setOpaque(false);
 
-        //Header
-        header.setBounds(250, 0, 750, 50);
-        header.setBackground(Color.WHITE);
+        //Navbar
+        navbar.setBounds(0, 0, 1000, 50);
+        navbar.setBackground(new Color(51,51,51));
 
-        //heading
-        heading.setBounds(0, 0, 600, 50);
-        heading.setFont(h1);
+        //Welcome Text
+        welcome.setBounds(0, 0, 250, 50);
+        welcome.setFont(h3);
+        welcome.setForeground(Color.WHITE);
+
+        //MenuItem 1
+        menuItem1.setBounds(250, 0, 250, 50);
+        menuItem1.setIcon(new ImageIcon(findCourse_Unselected));
+        menuItem1.setRolloverIcon(new ImageIcon(findCourse_Selected));
+        menuItem1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        menuItem1.addActionListener(new ActionListener() {
+
+            //When the JButton is clicked
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+
+        });
+
+
+        //MenuItem 2
+        menuItem2.setBounds(500, 0, 250, 50);
+        menuItem2.setIcon(new ImageIcon(accountSettings_Unselected));
+        menuItem2.setRolloverIcon(new ImageIcon(accountSettings_Selected));
+        menuItem2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        menuItem2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
         //Logout Button
-        logoutBtn.setBounds(600, 0, 150, 50);
+        logoutBtn.setBounds(750, 0, 250, 50);
         logoutBtn.setIcon(new ImageIcon(logoutBtn_Unselected));
         logoutBtn.setRolloverIcon(new ImageIcon(logoutBtn_Selected));
         logoutBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -129,55 +157,16 @@ public class MainPanel {
 
         });
 
-        //Navbar
-        navbar.setBounds(0, 0, 250, 750);
-        navbar.setBackground(new Color(51,51,51));
-
-        //Welcome Text
-        welcome.setBounds(0, 0, 250, 50);
-        welcome.setFont(h3);
-        welcome.setForeground(Color.WHITE);
-
-        //MenuItem 1
-        menuItem1.setBounds(0, 50, 250, 50);
-        menuItem1.setIcon(new ImageIcon(findCourse_Unselected));
-        menuItem1.setRolloverIcon(new ImageIcon(findCourse_Selected));
-        menuItem1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        menuItem1.addActionListener(new ActionListener() {
-
-            //When the Register button is clicked
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-
-        //MenuItem 2
-        menuItem2.setBounds(0, 100, 250, 50);
-        menuItem2.setIcon(new ImageIcon(accountSettings_Unselected));
-        menuItem2.setRolloverIcon(new ImageIcon(accountSettings_Selected));
-        menuItem2.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        menuItem2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
 
     }
 
     //Add the Components
     public static void addComponents(){
-        //header.add(heading);
-        header.add(logoutBtn);
-        header.setLayout(new BorderLayout());
         navbar.add(welcome);
         navbar.add(menuItem1);
         navbar.add(menuItem2);
+        navbar.add(logoutBtn);
         navbar.setLayout(new BorderLayout());
-        panel.add(header);
         panel.add(navbar);
         panel.setLayout(new BorderLayout());
     }

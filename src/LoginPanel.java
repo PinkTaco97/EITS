@@ -10,6 +10,7 @@ public class LoginPanel {
 
     //Create Components
     public static JPanel panel = new JPanel();
+    public static JLabel background = new JLabel();
     public static JLabel heading = new JLabel("Welcome to EITS", JLabel.CENTER);
     public static JLabel heading1 = new JLabel("Please login to your account.", JLabel.CENTER);
     public static JLabel usernameText = new JLabel("Username");
@@ -20,6 +21,7 @@ public class LoginPanel {
     public static JButton loginBtn = new JButton();
 
     //Images
+    public static BufferedImage backgroundImage;
     public static BufferedImage loginBtn_Unselected;
     public static BufferedImage loginBtn_Selected;
     public static BufferedImage registerBtn_Unselected;
@@ -27,13 +29,14 @@ public class LoginPanel {
 
     //Font
     public static final String font = "Apple Casual";
-    public static Font h1 = new Font(font, Font.PLAIN, 40);
+    public static Font h1 = new Font(font, Font.PLAIN, 50);
     public static Font h2 = new Font(font, Font.PLAIN, 30);
     public static Font h3 = new Font(font, Font.PLAIN, 20);
     public static Font h4 = new Font(font, Font.PLAIN, 15);
 
     //Color
     public static final Color backgroundColor = new Color(51, 51,51);
+    public static final Color textColor = new Color(51,51,51);
 
     public LoginPanel(){
         loadImages();
@@ -45,6 +48,9 @@ public class LoginPanel {
         //try to load the Images
         try {
 
+            //Login Panel Image
+            backgroundImage = ImageIO.read(new File("images/LoginPanel.png"));
+
             //Login Images
             loginBtn_Unselected = ImageIO.read(new File("images/LoginBtn_Unselected.png"));
             loginBtn_Selected = ImageIO.read(new File("images/LoginBtn_Selected.png"));
@@ -54,43 +60,50 @@ public class LoginPanel {
             registerBtn_Selected = ImageIO.read(new File("images/RegisterBtn_Selected.png"));
 
         } catch (Exception ex) {
-            System.out.println(ex);
+
+            //Print the error to the console
+            System.out.println(ex.getMessage());
         }
     }
 
     //Setup the Components
     public static void setupComponents(){
 
-        //Register Panel
-        panel.setBounds(600,0,400,750);
-        panel.setBackground(backgroundColor);
+        //Login Panel
+        panel.setBounds(200,75,600,600);
+        panel.setOpaque(false);
+        //panel.setBackground(backgroundColor);
+
+        //Background
+        background.setBounds(0,0,600,600);
+        background.setIcon(new ImageIcon(backgroundImage));
 
         //Heading
-        heading.setBounds(0, 25, 400, 100);
+        heading.setBounds(0, 0, 600, 100);
         heading.setFont(h1);
-        heading.setForeground(Color.WHITE);
+        heading.setForeground(textColor);
 
-        //Heading
-        heading1.setBounds(0, 100, 400, 50);
+        //Heading 1
+        heading1.setBounds(0, 75, 600, 50);
         heading1.setFont(h3);
-        heading1.setForeground(Color.white);
+        heading1.setForeground(textColor);
 
         //Username Text
-        usernameText.setBounds(25, 200, 300, 50);
+        usernameText.setBounds(125, 150, 300, 50);
         usernameText.setFont(h2);
-        usernameText.setForeground(Color.WHITE);
+        usernameText.setForeground(textColor);
 
         //Username Input
-        usernameInput.setBounds(25, 250, 350, 50);
+        usernameInput.setBounds(125, 200, 350, 50);
         usernameInput.setFont(h2);
 
         //Password Text
-        passwordText.setBounds(25, 325, 300, 50);
+        passwordText.setBounds(125, 275, 300, 50);
         passwordText.setFont(h2);
-        passwordText.setForeground(Color.WHITE);
+        passwordText.setForeground(textColor);
 
         //Password Input
-        passwordInput.setBounds(25, 375, 350, 50);
+        passwordInput.setBounds(125, 325, 350, 50);
         passwordInput.setFont(h2);
         passwordInput.addActionListener(new ActionListener(){
 
@@ -102,8 +115,9 @@ public class LoginPanel {
         });
 
         //Login Button
-        loginBtn.setBounds(25, 525, 350, 75);
+        loginBtn.setBounds(150, 400, 300, 75);
         loginBtn.setFont(h2);
+        loginBtn.setOpaque(false);
         loginBtn.setIcon(new ImageIcon(loginBtn_Unselected));
         loginBtn.setRolloverIcon(new ImageIcon(loginBtn_Selected));
         loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -118,8 +132,9 @@ public class LoginPanel {
         });
 
         //Register Button
-        registerBtn.setBounds(25, 625, 350, 75);
+        registerBtn.setBounds(150, 500, 300, 75);
         registerBtn.setFont(h2);
+        registerBtn.setOpaque(false);
         registerBtn.setIcon(new ImageIcon(registerBtn_Unselected));
         registerBtn.setRolloverIcon(new ImageIcon(registerBtn_Selected));
         registerBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -144,6 +159,7 @@ public class LoginPanel {
         panel.add(passwordInput);
         panel.add(loginBtn);
         panel.add(registerBtn);
+        panel.add(background);
         panel.setLayout(new BorderLayout());
     }
 }

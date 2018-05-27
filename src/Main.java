@@ -146,6 +146,10 @@ public class Main {
                     //Alert Login Successful
                     JOptionPane.showMessageDialog(frame, "Login Successful!");
 
+                    //Reset the Login Inputs
+                    loginPanel.usernameInput.setText("");
+                    loginPanel.passwordInput.setText("");
+
                     //Hide Login Panel
                     loginPanel.panel.setVisible(false);
 

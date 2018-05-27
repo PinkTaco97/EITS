@@ -35,7 +35,8 @@ public class RegisterPanel {
     public static Font h4 = new Font(font, Font.PLAIN, 15);
 
     //Color
-    public static final Color backgroundColor = new Color(51, 51,51);
+    public static final Color backgroundColor = new Color(255, 255,255);
+    public static final Color textColor = new Color(51,51,51);
 
     public RegisterPanel(){
         loadImages();
@@ -70,17 +71,17 @@ public class RegisterPanel {
         //Heading
         heading.setBounds(100, 25, 400, 100);
         heading.setFont(h1);
-        heading.setForeground(Color.WHITE);
+        heading.setForeground(textColor);
 
         //Heading
         heading1.setBounds(100, 100, 400, 50);
         heading1.setFont(h3);
-        heading1.setForeground(Color.white);
+        heading1.setForeground(textColor);
 
         //Username Text
         usernameText.setBounds(125, 150, 300, 50);
         usernameText.setFont(h2);
-        usernameText.setForeground(Color.WHITE);
+        usernameText.setForeground(textColor);
 
         //Username Input
         usernameInput.setBounds(125, 200, 350, 50);
@@ -97,7 +98,7 @@ public class RegisterPanel {
         //Password Text
         passwordText.setBounds(125, 275, 300, 50);
         passwordText.setFont(h2);
-        passwordText.setForeground(Color.WHITE);
+        passwordText.setForeground(textColor);
 
         //Password Input
         passwordInput.setBounds(125, 325, 350, 50);
@@ -114,7 +115,7 @@ public class RegisterPanel {
         //Email Text
         emailText.setBounds(125, 400, 300, 50);
         emailText.setFont(h2);
-        emailText.setForeground(Color.WHITE);
+        emailText.setForeground(textColor);
 
         //Email Input
         emailInput.setBounds(125, 450, 350, 50);
@@ -129,8 +130,9 @@ public class RegisterPanel {
         });
 
         //Register Button
-        registerBtn.setBounds(125, 525, 350, 75);
+        registerBtn.setBounds(150, 525, 300, 75);
         registerBtn.setFont(h2);
+        registerBtn.setOpaque(false);
         registerBtn.setIcon(new ImageIcon(registerBtn_Unselected));
         registerBtn.setRolloverIcon(new ImageIcon(registerBtn_Selected));
         registerBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -145,8 +147,10 @@ public class RegisterPanel {
         });
 
         //Login Button
-        loginBtn.setBounds(125, 625, 350, 75);
-        loginBtn.setFont(h2);loginBtn.setIcon(new ImageIcon(loginBtn_Unselected));
+        loginBtn.setBounds(150, 625, 300, 75);
+        loginBtn.setFont(h2);
+        loginBtn.setOpaque(false);
+        loginBtn.setIcon(new ImageIcon(loginBtn_Unselected));
         loginBtn.setRolloverIcon(new ImageIcon(loginBtn_Selected));
         loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         loginBtn.addActionListener(new ActionListener() {
