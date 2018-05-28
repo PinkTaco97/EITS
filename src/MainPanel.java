@@ -16,6 +16,7 @@ public class MainPanel {
     public static JButton menuItem1 = new JButton();
     public static JButton menuItem2 = new JButton();
     public static JButton logoutBtn = new JButton();
+    public static CoursePanel coursePanel = new CoursePanel();
 
     //Images
     public static BufferedImage findCourse_Unselected;
@@ -168,6 +169,7 @@ public class MainPanel {
         navbar.add(logoutBtn);
         navbar.setLayout(new BorderLayout());
         panel.add(navbar);
+        panel.add(coursePanel.panel);
         panel.setLayout(new BorderLayout());
     }
 }
