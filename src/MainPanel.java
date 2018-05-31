@@ -17,6 +17,7 @@ public class MainPanel {
     public static JButton menuItem2 = new JButton();
     public static JButton logoutBtn = new JButton();
     public static CoursePanel coursePanel = new CoursePanel();
+    public static SettingsPanel settingsPanel = new SettingsPanel();
 
     //Images
     public static BufferedImage findCourse_Unselected;
@@ -125,7 +126,7 @@ public class MainPanel {
             //When the JButton is clicked
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ShowCourses();
             }
 
         });
@@ -139,7 +140,7 @@ public class MainPanel {
         menuItem2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ShowSettings();
             }
         });
 
@@ -170,6 +171,18 @@ public class MainPanel {
         navbar.setLayout(new BorderLayout());
         panel.add(navbar);
         panel.add(coursePanel.panel);
+        panel.add(settingsPanel.panel);
         panel.setLayout(new BorderLayout());
+    }
+
+    //Show the account settings
+    public static void ShowSettings(){
+        coursePanel.panel.setVisible(false);
+        settingsPanel.panel.setVisible(true);
+    }
+
+    public static void ShowCourses(){
+        settingsPanel.panel.setVisible(false);
+        coursePanel.panel.setVisible(true);
     }
 }
