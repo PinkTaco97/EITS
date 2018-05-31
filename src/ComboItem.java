@@ -9,6 +9,10 @@ public class ComboItem extends Object {
         this.text = msg;
     }
 
+    ComboItem(String msg){
+        this.text = msg;
+    }
+
     @Override
     public String toString()
     {

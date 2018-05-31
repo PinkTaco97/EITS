@@ -1,11 +1,8 @@
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,12 +18,11 @@ public class CoursePanel {
     public static JLabel courseText = new JLabel("Select Course", JLabel.CENTER);
     public static JComboBox courseInput = new JComboBox();
     public static JPanel content = new JPanel();
-    public static JLabel courseTitle = new JLabel("Diploma of Software Development", JLabel.CENTER);
+    public static JLabel courseTitle = new JLabel("", JLabel.CENTER);
 
-    //The Units Table
-    public static String[] unitHeading = {"Unit Code", "Unit Description"};
-    public static Object[][] unitdata = {{"ICT134", "Web Programming"}};
-    public static JTable unitsTable = new JTable(unitdata, unitHeading);
+    //The units table
+    public static DefaultTableModel model;
+    public static JTable unitTable = new JTable();
 
     //Fonts
     public static final String fontFamily = "Apple Casual";
@@ -40,17 +36,19 @@ public class CoursePanel {
     public static final Color textColor = new Color(51,51,51);
 
     //The Selected industry ID
-    public static int selectedIndustry = 1;
+    public static int selectedIndustryID = 0;
+    public static String selectedIndustry = "";
 
     //The Selected course ID
-    public static int selectedCourse = 1;
+    public static int selectedCourseID = 1;
+    public static String selectCourse = "";
 
     public static boolean changingCourse = false;
 
 
     public CoursePanel(){
         loadIndustrys();
-        loadCourses(selectedIndustry);
+        loadCourses(selectedIndustryID);
         setupComponents();
         addComponents();
     }
@@ -71,6 +69,8 @@ public class CoursePanel {
 
             //Execute the query and get the result
             ResultSet row = statement.executeQuery(sql);
+
+            industryInput.addItem(new ComboItem("Select an Industry"));
 
             //Iterate through the results
             while (row.next()) {
@@ -111,6 +111,8 @@ public class CoursePanel {
             // execute the Statement
             ResultSet row = statement.executeQuery(sql);
 
+            courseInput.addItem(new ComboItem("Select a Course"));
+
             //Iterate through the results
             while (row.next()) {
                 courseInput.addItem(new ComboItem(row.getString("Code") + " - " + row.getString("Name"), row.getInt("ID")));
@@ -146,15 +148,21 @@ public class CoursePanel {
             // execute the Statement
             ResultSet row = statement.executeQuery(sql);
 
-            System.out.println(" Code  |  Description");
-            System.out.println("-------|-------------------------------");
+            model = new DefaultTableModel(new String[]{"Unit Code", "Unit Description"}, 0);
+            model.addRow(new Object[]{"Unit Code", "Unit Description"});
 
             //Iterate through the results
             while (row.next()) {
-                System.out.println(row.getString("Code") + " | " + row.getString("Description"));
+                //System.out.println(row.getString("Code") + " | " + row.getString("Description"));
+
+                String code = row.getString("Code");
+                String description = row.getString("Description");
+                model.addRow(new Object[]{code, description});
             }
 
-            System.out.println("\n");
+
+            unitTable.setModel(model);
+
 
         } catch (Exception ex) {
 
@@ -193,9 +201,10 @@ public class CoursePanel {
                 //Get the selected item
                 Object item = industryInput.getSelectedItem();
                 //Get the Industry ID
-                selectedIndustry = ((ComboItem)item).getID();
+                selectedIndustryID = ((ComboItem)item).getID();
                 //Load the courses
-                loadCourses(selectedIndustry);
+                loadCourses(selectedIndustryID);
+                loadUnits(selectedCourseID);
             }
         });
 
@@ -215,12 +224,15 @@ public class CoursePanel {
                     //Get the selected item
                     Object item = courseInput.getSelectedItem();
                     //Get the Course ID
-                    selectedCourse = ((ComboItem)item).ID;
+                    selectedCourseID = ((ComboItem)item).ID;
+                    //Get the Course Title
+                    courseTitle.setText(((ComboItem) item).text);
                     //Load the Course Units
-                    loadUnits(selectedCourse);
+                    loadUnits(selectedCourseID);
                 }
             }
         });
+
 
         //Content
         content.setBounds(0, 150, 900, 500);
@@ -228,40 +240,27 @@ public class CoursePanel {
 
         //Course Title
         courseTitle.setBounds(0, 0, 900, 50);
-        courseTitle.setFont(h1);
+        courseTitle.setFont(h2);
+
+        //Unit Table
+        unitTable.setBounds(0, 75, 900, 450);
+
 
     }
 
     //Add the Components
     public static void addComponents(){
+
         header.add(industryText);
         header.add(industryInput);
         header.add(courseText);
         header.add(courseInput);
         header.setLayout(new BorderLayout());
         content.add(courseTitle);
-        content.add(unitsTable.getTableHeader(), BorderLayout.PAGE_START);
-        content.add(unitsTable, BorderLayout.CENTER);
+        content.add(unitTable);
         content.setLayout(new BorderLayout());
         panel.add(header);
         panel.add(content);
         panel.setLayout(new BorderLayout());
     }
-
-    //Make the ComboBox List Items
-    private static Object makeItem(final String item, final int ID){
-        return new Object(){
-
-            public int id = ID;
-
-            public String toString() {
-                return item;
-            }
-
-            public int getId(){
-                return id;
-            }
-        };
-    }
-
 }
