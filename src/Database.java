@@ -63,7 +63,7 @@ public class Database {
     }
 
     //Insert a User into the database
-    public void insertUser(String username, String password, String email){
+    public void insertUser(String username, String password, String email, int access){
         //Try to connect to the database
         try {
 
@@ -72,7 +72,7 @@ public class Database {
             Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
 
             //Our SQL query
-            String insert = "INSERT INTO Users (Username, Password, Email) VALUES ('" + username + "', '" + password + "', '" + email + "');";
+            String insert = "INSERT INTO Users (Username, Password, Email, Access) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + access + "');";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(insert);

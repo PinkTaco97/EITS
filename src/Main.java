@@ -190,6 +190,9 @@ public class Main {
         //The email entered
         String email = registerPanel.emailInput.getText();
 
+        //The Access
+        int access = 2;
+
         //If the Username isnt empty
         if(!username.isEmpty()){
             //If the Password isnt empty
@@ -210,7 +213,7 @@ public class Main {
                         //If the Username isnt taken
                         else{
                             //Insert the User into the database
-                            database.insertUser(username, password, email);
+                            database.insertUser(username, password, email, access);
 
                             ShowLogin();
                         }

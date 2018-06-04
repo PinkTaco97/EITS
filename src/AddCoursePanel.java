@@ -54,13 +54,9 @@ public class AddCoursePanel extends JPanel {
     //Load the Industrys from the database
     public static void loadIndustrys(){
 
-        //Clear industry input
-        if(industryInput.getItemCount() > 0){
-            industryInput.removeAllItems();
-        }
-
         //Try to connect to the database
         try {
+            System.out.println(industryInput.getItemAt(0));
 
             //Create Database Connection
             Class.forName(Main.database.DRIVER);

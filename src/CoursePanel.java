@@ -116,7 +116,7 @@ public class CoursePanel extends JPanel {
 
             //Iterate through the results
             while (row.next()) {
-                courseInput.addItem(new ComboItem(row.getString("Code") + " - " + row.getString("Name"), row.getInt("ID")));
+                courseInput.addItem(new ComboItem(row.getString("Name"), row.getInt("ID")));
             }
 
         } catch (Exception ex) {
