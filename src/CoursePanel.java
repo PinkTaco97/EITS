@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class CoursePanel {
+public class CoursePanel extends JPanel {
 
     //Components
     public static JPanel panel = new JPanel();
@@ -27,13 +27,14 @@ public class CoursePanel {
     //Fonts
     public static final String fontFamily = "Apple Casual";
     public static Font h1 = new Font(fontFamily, Font.PLAIN, 50);
-    public static Font h2 = new Font(fontFamily, Font.PLAIN, 30);
+    public static Font h2 = new Font(fontFamily, Font.PLAIN, 35);
     public static Font h3 = new Font(fontFamily, Font.PLAIN, 20);
     public static Font h4 = new Font(fontFamily, Font.PLAIN, 15);
 
     //Colors
     public static final Color backgroundColor = new Color(255,255,255);
     public static final Color textColor = new Color(51,51,51);
+    public static final Color gridColor = new Color(51, 51, 51);
 
     //The Selected industry ID
     public static int selectedIndustryID = 0;
@@ -148,21 +149,35 @@ public class CoursePanel {
             // execute the Statement
             ResultSet row = statement.executeQuery(sql);
 
-            model = new DefaultTableModel(new String[]{"Unit Code", "Unit Description"}, 0);
-            model.addRow(new Object[]{"Unit Code", "Unit Description"});
+            model = new DefaultTableModel(new String[]{"Unit Code", "Unit Description"}, 0)
+            {
+                public boolean isCellEditable(int row, int column)
+                {
+                    return false;
+                }
+
+            };
+
+            //Add the table heading
+            model.addRow(new Object[]{"Unit Code", " Unit Description"});
 
             //Iterate through the results
             while (row.next()) {
-                //System.out.println(row.getString("Code") + " | " + row.getString("Description"));
 
-                String code = row.getString("Code");
-                String description = row.getString("Description");
+                //Get the Unit code from the database
+                String code = "  " + row.getString("Code");
+
+                //Get the Unit description from the database
+                String description = " " + row.getString("Description");
+
+                //Add the row to the table model
                 model.addRow(new Object[]{code, description});
             }
 
-
+            //set the Tables model
             unitTable.setModel(model);
-
+            unitTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+            unitTable.getColumnModel().getColumn(1).setPreferredWidth(800);
 
         } catch (Exception ex) {
 
@@ -181,6 +196,7 @@ public class CoursePanel {
         //Panel
         panel.setBounds(50, 65, 900, 650);
         panel.setBackground(backgroundColor);
+        panel.setVisible(false);
 
         //Header
         header.setBounds(0, 0, 900, 150);
@@ -204,7 +220,8 @@ public class CoursePanel {
                 selectedIndustryID = ((ComboItem)item).getID();
                 //Load the courses
                 loadCourses(selectedIndustryID);
-                loadUnits(selectedCourseID);
+                courseTitle.setText("Select a Course");
+                loadUnits(0);
             }
         });
 
@@ -244,7 +261,11 @@ public class CoursePanel {
 
         //Unit Table
         unitTable.setBounds(0, 75, 900, 450);
-
+        unitTable.setFont(h3);
+        unitTable.setRowHeight(30);
+        unitTable.setGridColor(gridColor);
+        unitTable.setCellSelectionEnabled(false);
+        unitTable.setRowSelectionAllowed(false);
 
     }
 

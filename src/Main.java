@@ -25,7 +25,7 @@ public class Main {
     public static final Color backgroundColor = new Color(255,255,255);
 
     //Background Image File
-    public static String bgImage = "images/background.jpeg";
+    public static String bgImage = "images/background1.jpg";
 
     //Background Image Icon
     public static ImageIcon backgroundImage = new ImageIcon();
@@ -34,7 +34,10 @@ public class Main {
     public static JLabel background = new JLabel();
 
     //Logged In User
-    public static int userID = 0;
+    public static int userID;
+    public static String username;
+    public static String email;
+    public static int access;
 
     public static void main(String[] args) {
         // write your code here
@@ -142,9 +145,10 @@ public class Main {
 
                     //Load the users Info
                     mainPanel.loadUser(userID);
+                    mainPanel.setup();
 
                     //Alert Login Successful
-                    JOptionPane.showMessageDialog(frame, "Login Successful!");
+                    Alert("Login Successful!");
 
                     //Reset the Login Inputs
                     loginPanel.usernameInput.setText("");
@@ -161,16 +165,16 @@ public class Main {
 
                 } else {
                     //Wrong Username
-                    JOptionPane.showMessageDialog(frame, "Wrong Username or Password");
+                    Alert("Wrong Username or Password");
                 }
             } else{
                 //No Password
-                JOptionPane.showMessageDialog(frame, "Please enter a Password");
+                Alert("Please enter a Password");
             }
         }
         else{
             //No Username
-            JOptionPane.showMessageDialog(frame, "Please enter a Username");
+            Alert("Please enter a Username");
         }
     }
 
@@ -198,7 +202,7 @@ public class Main {
                         if(database.isUsernameTaken(username)){
 
                             //Alert that the Username is taken
-                            JOptionPane.showMessageDialog(frame,"Username Taken");
+                            Alert("Username Taken");
 
                             //Reset Username InputField
                             registerPanel.usernameInput.setText("");
@@ -213,25 +217,26 @@ public class Main {
                     }
                     else{
                         //Email invaild
-                        JOptionPane.showMessageDialog(frame,"Email Invalid");
+                        Alert("Email Invalid");
                     }
                 }
                 else{
                     //No Email
-                    JOptionPane.showMessageDialog(frame, "Please enter an Email");
+                    Alert("Please enter an Email");
                 }
             }
             else{
                 //No Password
-                JOptionPane.showMessageDialog(frame, "Please enter a Password");
+                Alert("Please enter a Password");
             }
         }
         else{
             //No Username
-            JOptionPane.showMessageDialog(frame, "Please enter a Username");
+            Alert("Please enter a Username");
         }
     }
 
+    //Logout
     public static void Logout(){
 
         //Hide Register Panel
@@ -243,4 +248,10 @@ public class Main {
         //Show Login Panel
         loginPanel.panel.setVisible(true);
     }
+
+    //Alert a message to the user
+    public static void Alert(String message){
+        JOptionPane.showMessageDialog(frame, message);
+    }
+
 }

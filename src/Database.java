@@ -62,7 +62,7 @@ public class Database {
         return null;
     }
 
-
+    //Insert a User into the database
     public void insertUser(String username, String password, String email){
         //Try to connect to the database
         try {
@@ -99,6 +99,76 @@ public class Database {
 
             //Alert Error
             JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+        }
+    }
+
+    //Insert an Industry into the database
+    public Boolean insertIndustry(String name){
+        //Try to connect to the database
+        try {
+
+            //Create Database Connection
+            Class.forName(DRIVER);
+            Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
+
+            //Our SQL query
+            String insert = "INSERT INTO Industry (Name) VALUES ('" + name + "');";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(insert);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            //Alert the user that the registration was successful
+            JOptionPane.showMessageDialog(Main.frame,"Inserted Successful!");
+
+            return true;
+
+        } catch(Exception ex){
+
+            //We got an Exception
+            System.err.println(ex.getMessage());
+
+            //Alert Error
+            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+
+            return false;
+        }
+    }
+
+    //Insert a Course into the database
+    public Boolean insertCourse(String name, int industryID){
+        //Try to connect to the database
+        try {
+
+            //Create Database Connection
+            Class.forName(DRIVER);
+            Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
+
+            //Our SQL query
+            String insert = "INSERT INTO Courses (Name, IndustryID) VALUES ('" + name + "', '" + industryID + "');";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(insert);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            //Alert the user that the registration was successful
+            JOptionPane.showMessageDialog(Main.frame,"Inserted Successful!");
+
+            return true;
+
+        } catch(Exception ex){
+
+            //We got an Exception
+            System.err.println(ex.getMessage());
+
+            //Alert Error
+            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+
+            return false;
         }
     }
 
