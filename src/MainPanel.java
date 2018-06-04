@@ -27,6 +27,7 @@ public class MainPanel {
     public static AddCoursePanel addCoursePanel = new AddCoursePanel();
     public static AddUnitPanel addUnitPanel = new AddUnitPanel();
     public static AddStaffPanel addStaffPanel = new AddStaffPanel();
+    public static StaffPanel staffPanel = new StaffPanel();
 
     //Images
     public static BufferedImage findCourse_Unselected;
@@ -104,6 +105,7 @@ public class MainPanel {
 
             //Staff
             case 1:
+                ShowStaffPanel();
                 break;
 
             //Student
@@ -304,6 +306,7 @@ public class MainPanel {
         panel.add(addCoursePanel.panel);
         panel.add(addUnitPanel.panel);
         panel.add(addStaffPanel.panel);
+        panel.add(staffPanel.panel);
         panel.setLayout(new BorderLayout());
     }
 
@@ -316,6 +319,7 @@ public class MainPanel {
         addCoursePanel.panel.setVisible(false);
         addUnitPanel.panel.setVisible(false);
         addStaffPanel.panel.setVisible(false);
+        StaffPanel.panel.setVisible(false);
     }
 
     //Show the account settings
@@ -372,5 +376,10 @@ public class MainPanel {
         addCoursePanel.panel.setVisible(false);
         addUnitPanel.panel.setVisible(false);
         addStaffPanel.panel.setVisible(true);
+    }
+
+    //Show the Staff Panel
+    public static void ShowStaffPanel(){
+        staffPanel.panel.setVisible(true);
     }
 }
