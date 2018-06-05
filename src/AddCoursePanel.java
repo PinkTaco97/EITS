@@ -17,7 +17,7 @@ public class AddCoursePanel extends JPanel {
     public static JLabel title = new JLabel("Add Course", JLabel.CENTER);
     public static JLabel industryText = new JLabel("Select Industry");
     public static JComboBox industryInput = new JComboBox();
-    public static JLabel courseText = new JLabel("Course Title:");
+    public static JLabel courseText = new JLabel("Course Name:");
     public static JTextField courseInput = new JTextField();
     public static JButton addCourseBtn = new JButton();
 
@@ -54,10 +54,11 @@ public class AddCoursePanel extends JPanel {
     //Load the Industrys from the database
     public static void loadIndustrys(){
 
+        //Clear the Industry List
+        industryInput.removeAllItems();
+
         //Try to connect to the database
         try {
-            System.out.println(industryInput.getItemAt(0));
-
             //Create Database Connection
             Class.forName(Main.database.DRIVER);
             Connection con = DriverManager.getConnection(Main.database.SERVER, Main.database.USERNAME, Main.database.PASSWORD);
@@ -129,10 +130,14 @@ public class AddCoursePanel extends JPanel {
             //When the JButton is clicked
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Get the selected item
-                Object item = industryInput.getSelectedItem();
-                //Get the Industry ID
-                selectedIndustryID = ((ComboItem)item).getID();
+
+                //If there are Industrys in the list
+                if(industryInput.getItemCount() > 0) {
+                    //Get the selected item
+                    Object item = industryInput.getSelectedItem();
+                    //Get the Industry ID
+                    selectedIndustryID = ((ComboItem)item).getID();
+                }
             }
 
         });
@@ -144,6 +149,28 @@ public class AddCoursePanel extends JPanel {
         //Course Input
         courseInput.setBounds(50, 250, 400, 50);
         courseInput.setFont(h2);
+        courseInput.addActionListener(new ActionListener() {
+
+            //When the JButton is clicked
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String course = courseInput.getText();
+
+                if(selectedIndustryID > 0){
+                    if(!course.isEmpty()){
+                        Main.database.insertCourse(course, selectedIndustryID);
+                    }
+                    else{
+                        Main.Alert("Please input a Course name.");
+                    }
+                }
+                else{
+                    Main.Alert("Please Select an Industry");
+                }
+            }
+
+        });
 
         //Add Course Btn
         addCourseBtn.setBounds(50, 350, 400, 75);

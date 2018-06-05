@@ -121,7 +121,7 @@ public class Database {
             preparedStmt.execute();
 
             //Alert the user that the registration was successful
-            JOptionPane.showMessageDialog(Main.frame,"Inserted Successful!");
+            JOptionPane.showMessageDialog(Main.frame,"Inserted Industry: \n'" + name + "'\n Into the Database.");
 
             return true;
 
@@ -156,7 +156,7 @@ public class Database {
             preparedStmt.execute();
 
             //Alert the user that the registration was successful
-            JOptionPane.showMessageDialog(Main.frame,"Inserted Successful!");
+            JOptionPane.showMessageDialog(Main.frame,"Inserted Course:\n '" + name + "'\n Into the Database");
 
             return true;
 
@@ -172,6 +172,44 @@ public class Database {
         }
     }
 
+    //Insert a Unit into the database
+    public Boolean insertUnit(String code, String description, int courseID){
+        //Try to connect to the database
+        try {
+
+            //Create Database Connection
+            Class.forName(DRIVER);
+            Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
+
+            //Our SQL query
+            String insert = "INSERT INTO Units (Code, Description, CourseID) VALUES ('" + code + "', '" + description + "', '" + courseID + "');";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(insert);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            //Alert the user that the registration was successful
+            JOptionPane.showMessageDialog(Main.frame,"Inserted Unit:\n '" + code + " - " + description + "'\n Into the Database");
+
+            return true;
+
+        } catch(Exception ex){
+
+            //We got an Exception
+            System.err.println(ex.getMessage());
+
+            //Alert Error
+            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+
+            return false;
+        }
+    }
+
+    //Compares the username and password to the database username and password
+    //Returns userID if they matched
+    //Returns 0 if no match in database
     public int Login(String username, String password) {
         //Try to connect to the database
         try {
