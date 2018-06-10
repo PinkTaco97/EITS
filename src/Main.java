@@ -191,7 +191,7 @@ public class Main {
         String email = registerPanel.emailInput.getText();
 
         //The Access
-        int access = 2;
+        int access = 2; //Student
 
         //If the Username isnt empty
         if(!username.isEmpty()){
