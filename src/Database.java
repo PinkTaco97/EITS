@@ -7,13 +7,13 @@ public class Database {
     static final String DRIVER = "com.mysql.jdbc.Driver";
 
     //Reference to the server
-    static final String SERVER = "jdbc:mysql://localhost:8889/EITS";
+    static final String SERVER = "jdbc:mysql://localhost:3306/EITS";
 
     //Database Username
     static final String USERNAME = "root";
 
     //Database Password
-    static final String PASSWORD = "root";
+    static final String PASSWORD = "";
 
     public Database(){
 
