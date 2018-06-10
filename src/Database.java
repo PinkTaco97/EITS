@@ -7,13 +7,13 @@ public class Database {
     static final String DRIVER = "com.mysql.jdbc.Driver";
 
     //Reference to the server
-    static final String SERVER = "jdbc:mysql://localhost:3306/EITS";
+    static final String SERVER = "jdbc:mysql://localhost:8889/EITS";
 
     //Database Username
     static final String USERNAME = "root";
 
     //Database Password
-    static final String PASSWORD = "";
+    static final String PASSWORD = "root";
 
     public Database(){
 
@@ -204,6 +204,38 @@ public class Database {
             JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
 
             return false;
+        }
+    }
+
+    //Get the Course Name
+    public static String getCourseName(int courseID){
+        //Try to connect to the database
+        try {
+
+            //Create Database Connection
+            Class.forName(DRIVER);
+            Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
+
+            //Our SQL query
+            String sql = "SELECT * FROM Courses WHERE ID = '" + courseID + "'";
+
+            //create the java statement
+            Statement statement = con.createStatement();
+
+            //execute the statement
+            ResultSet row = statement.executeQuery(sql);
+
+            return row.getString("Name");
+
+        } catch(Exception ex){
+
+            //We got an Exception
+            System.err.println(ex.getMessage());
+
+            //Alert Error
+            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+
+            return "";
         }
     }
 
