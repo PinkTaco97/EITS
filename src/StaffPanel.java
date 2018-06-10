@@ -61,11 +61,14 @@ public class StaffPanel extends JPanel {
                 //get the email from the database
                 String email = row.getString("Email");
 
-                //get the selected course from the database
-                int selectedCourse = row.getInt("CourseID");
+                //get the selected courseID from the database
+                int selectedCourseID = row.getInt("CourseID");
+
+                //get the selected course name from the database
+                String selectedCourseName = Main.database.getCourseName(selectedCourseID);
 
                 //add the row to the table model
-                model.addRow(new Object[]{name, email, selectedCourse});
+                model.addRow(new Object[]{name, email, selectedCourseName});
             }
 
             //set the tables model
