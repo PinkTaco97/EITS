@@ -37,6 +37,9 @@ public class AddUnitPanel extends JPanel {
     public static Font h3 = new Font(fontFamily, Font.PLAIN, 20);
     public static Font h4 = new Font(fontFamily, Font.PLAIN, 15);
 
+    //Course
+    public static int selectedCourseID = 0;
+
     public AddUnitPanel(){
         loadImages();
         loadCourses();
@@ -108,13 +111,29 @@ public class AddUnitPanel extends JPanel {
         title.setBounds(0, 25,500, 50);
         title.setFont(h1);
 
-        //Industry Text
+        //Course Text
         courseText.setBounds(50, 100, 400, 50);
         courseText.setFont(h2);
 
-        //Industry Input
+        //Course Input
         courseInput.setBounds(50, 140, 400, 50);
         courseInput.setFont(h4);
+        courseInput.addActionListener(new ActionListener() {
+
+            //When the JButton is clicked
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                //If there are Courses in the list
+                if(courseInput.getItemCount() > 0) {
+                    //Get the selected item
+                    Object item = courseInput.getSelectedItem();
+                    //Get the Course ID
+                    selectedCourseID = ((ComboItem)item).getID();
+                }
+            }
+
+        });
 
         //Unit Code Text
         unitCodeText.setBounds(50, 200, 400, 50);
@@ -132,7 +151,7 @@ public class AddUnitPanel extends JPanel {
         unitDescriptionInput.setBounds(50, 350, 400, 50);
         unitDescriptionInput.setFont(h2);
 
-        //Add Course Btn
+        //Add Unit Btn
         addUnitBtn.setBounds(50, 450, 400, 75);
         addUnitBtn.setIcon(new ImageIcon(addUnitBtn_Unselected));
         addUnitBtn.setRolloverIcon(new ImageIcon(addUnitBtn_Selected));
@@ -143,8 +162,39 @@ public class AddUnitPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-            }
+                //Get what the user entered
+                String code = unitCodeInput.getText();
+                String description = unitDescriptionInput.getText();
 
+                //If the user has selected a course
+                if(selectedCourseID > 0){
+
+                    //If the user has entered a Unit Code
+                    if(!code.isEmpty()){
+
+                        //If the user has entered a Unit Description
+                        if(!description.isEmpty()){
+
+                            //Insert the Unit
+                            Main.database.insertUnit(code, description, selectedCourseID);
+
+                            //Clear the Inputs
+                            unitCodeInput.setText("");
+                            unitDescriptionInput.setText("");
+                        }
+                        else{
+                            Main.Alert("Please input a Unit Description");
+                        }
+                    }
+                    else{
+                        Main.Alert("Please input a Unit Code.");
+                    }
+                }
+                else{
+                    Main.Alert("Please Select a Course");
+                }
+
+            }
         });
     }
 

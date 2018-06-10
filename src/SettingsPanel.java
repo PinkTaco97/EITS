@@ -12,6 +12,7 @@ public class SettingsPanel {
     public static JTextField passwordInput = new JTextField();
     public static JLabel emailText = new JLabel("Email:");
     public static JTextField emailInput = new JTextField();
+    public static JButton updateBtn = new JButton("Update");
 
 
 
@@ -68,6 +69,10 @@ public class SettingsPanel {
         emailInput.setBounds(250, 425, 400, 50);
         emailInput.setFont(h2);
 
+        //Update Button
+        updateBtn.setBounds(250, 525 , 400, 75);
+        updateBtn.setFont(h2);
+
     }
 
     //Add the Components
@@ -79,6 +84,7 @@ public class SettingsPanel {
         panel.add(passwordInput);
         panel.add(emailText);
         panel.add(emailInput);
+        panel.add(updateBtn);
         panel.setLayout(new BorderLayout());
     }
 }
