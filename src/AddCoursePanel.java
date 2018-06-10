@@ -35,7 +35,7 @@ public class AddCoursePanel extends JPanel {
     public static Font h3 = new Font(fontFamily, Font.PLAIN, 20);
     public static Font h4 = new Font(fontFamily, Font.PLAIN, 15);
 
-    //Course
+    //Industry
     public static int selectedIndustryID;
 
     //Constructor
@@ -155,10 +155,16 @@ public class AddCoursePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                //Get what the user entered
                 String course = courseInput.getText();
 
+                //If the user has selected an industry
                 if(selectedIndustryID > 0){
+
+                    //If the user entered a course name
                     if(!course.isEmpty()){
+
+                        //Insert the course into the database
                         Main.database.insertCourse(course, selectedIndustryID);
                     }
                     else{
