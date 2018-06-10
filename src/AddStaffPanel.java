@@ -100,6 +100,62 @@ public class AddStaffPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                //Get what the user entered
+                String username = usernameInput.getText();
+                String password = new String(passwordInput.getPassword());
+                String email = emailInput.getText();
+
+                //The Access
+                int access = 1; //Staff Member
+
+                //If the Username isnt empty
+                if(!username.isEmpty()){
+                    //If the Password isnt empty
+                    if(!password.isEmpty()){
+                        //If the Email isnt empty
+                        if(!email.isEmpty()){
+                            //If the Email is valid
+                            if(email.contains("@") && email.contains(".com")){
+                                //If the Username is taken
+                                if(Main.database.isUsernameTaken(username)){
+
+                                    //Alert that the Username is taken
+                                    Main.Alert("Username Taken");
+
+                                    //Reset Username InputField
+                                    usernameInput.setText("");
+                                }
+                                //If the Username isnt taken
+                                else{
+                                    //Insert the User into the database
+                                    Main.database.insertUser(username, password, email, access);
+
+                                    //Reset the input fields
+                                    usernameInput.setText("");
+                                    passwordInput.setText("");
+                                    emailInput.setText("");
+                                }
+                            }
+                            else{
+                                //Email invaild
+                                Main.Alert("Email Invalid");
+                            }
+                        }
+                        else{
+                            //No Email
+                            Main.Alert("Please enter an Email");
+                        }
+                    }
+                    else{
+                        //No Password
+                        Main.Alert("Please enter a Password");
+                    }
+                }
+                else{
+                    //No Username
+                    Main.Alert("Please enter a Username");
+                }
+
             }
 
         });
