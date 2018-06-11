@@ -56,7 +56,7 @@ public class Database {
             System.err.println(ex.getMessage());
 
             //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+            Main.Alert(" Error Connecting to Database!");
 
         }
         return null;
@@ -81,7 +81,7 @@ public class Database {
             preparedStmt.execute();
 
             //Alert the user that the registration was successful
-            JOptionPane.showMessageDialog(Main.frame,"Registration Successful!\n" + "Please Login.");
+            Main.Alert("Registration Successful!\n" + "Please Login.");
 
             //Reset the Username InputField
             Main.registerPanel.usernameInput.setText("");
@@ -95,10 +95,7 @@ public class Database {
         } catch(Exception ex){
 
             //We got an Exception
-            System.err.println(ex.getMessage());
-
-            //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+            Main.Alert(" Error Connecting to Database!");
         }
     }
 
@@ -121,7 +118,7 @@ public class Database {
             preparedStmt.execute();
 
             //Alert the user that the registration was successful
-            JOptionPane.showMessageDialog(Main.frame,"Inserted Industry: \n'" + name + "'\n Into the Database.");
+            Main.Alert("Inserted Industry: \n'" + name + "'\n Into the Database.");
 
             return true;
 
@@ -131,7 +128,7 @@ public class Database {
             System.err.println(ex.getMessage());
 
             //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+            Main.Alert("Error Connecting to Database!");
 
             return false;
         }
@@ -156,7 +153,7 @@ public class Database {
             preparedStmt.execute();
 
             //Alert the user that the registration was successful
-            JOptionPane.showMessageDialog(Main.frame,"Inserted Course:\n '" + name + "'\n Into the Database");
+            Main.Alert("Inserted Course:\n '" + name + "'\n Into the Database");
 
             return true;
 
@@ -166,7 +163,7 @@ public class Database {
             System.err.println(ex.getMessage());
 
             //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+            Main.Alert("Error Connecting to Database!");
 
             return false;
         }
@@ -191,7 +188,7 @@ public class Database {
             preparedStmt.execute();
 
             //Alert the user that the registration was successful
-            JOptionPane.showMessageDialog(Main.frame,"Inserted Unit:\n '" + code + " - " + description + "'\n Into the Database");
+            Main.Alert("Inserted Unit:\n '" + code + " - " + description + "'\n Into the Database");
 
             return true;
 
@@ -201,7 +198,7 @@ public class Database {
             System.err.println(ex.getMessage());
 
             //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, "Error Connecting to Database!");
+            Main.Alert("Error Connecting to Database!");
 
             return false;
         }
@@ -315,7 +312,7 @@ public class Database {
             System.err.println(ex.getMessage());
 
             //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+            Main.Alert("Error Connecting to Database!");
         }
 
         //Wrong Username or Password
