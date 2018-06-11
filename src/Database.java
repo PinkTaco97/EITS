@@ -201,9 +201,38 @@ public class Database {
             System.err.println(ex.getMessage());
 
             //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+            JOptionPane.showMessageDialog(Main.frame, "Error Connecting to Database!");
 
             return false;
+        }
+    }
+
+    //Insert the selected Course
+    public static void insertSelectedCourse(int userID, int courseID){
+        //Try to connect to the database
+        try{
+            //Create Database Connection
+            Class.forName(DRIVER);
+            Connection con =DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
+
+            //Our SQL query
+            String sql = "UPDATE Users SET CourseID = " + courseID + " WHERE ID = '" + userID + "';";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(sql);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            Main.Alert("Selected Successfully!");
+
+        }
+        catch(Exception ex){
+            //We got an Exception
+            System.err.println(ex.getMessage());
+
+            //Alert Error
+            Main.Alert("Error Connecting to Database!");
         }
     }
 

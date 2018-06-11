@@ -19,6 +19,7 @@ public class CoursePanel extends JPanel {
     public static JComboBox courseInput = new JComboBox();
     public static JPanel content = new JPanel();
     public static JLabel courseTitle = new JLabel("", JLabel.CENTER);
+    public static JButton selectCourseBtn = new JButton("Select Course");
 
     //The units table
     public static DefaultTableModel model;
@@ -41,8 +42,8 @@ public class CoursePanel extends JPanel {
     public static String selectedIndustry = "";
 
     //The Selected course ID
-    public static int selectedCourseID = 1;
-    public static String selectCourse = "";
+    public static int selectedCourseID = 0;
+    public static String selectedCourse = "";
 
     public static boolean changingCourse = false;
 
@@ -221,6 +222,7 @@ public class CoursePanel extends JPanel {
                 //Load the courses
                 loadCourses(selectedIndustryID);
                 courseTitle.setText("Select a Course");
+                selectedCourseID = 0;
                 loadUnits(0);
             }
         });
@@ -243,6 +245,7 @@ public class CoursePanel extends JPanel {
                     //Get the Course ID
                     selectedCourseID = ((ComboItem)item).ID;
                     //Get the Course Title
+                    selectedCourse = ((ComboItem)item).text;
                     courseTitle.setText(((ComboItem) item).text);
                     //Load the Course Units
                     loadUnits(selectedCourseID);
@@ -260,13 +263,31 @@ public class CoursePanel extends JPanel {
         courseTitle.setFont(h2);
 
         //Unit Table
-        unitTable.setBounds(0, 75, 900, 450);
+        unitTable.setBounds(0, 75, 900, 300);
         unitTable.setFont(h3);
         unitTable.setRowHeight(30);
         unitTable.setGridColor(gridColor);
         unitTable.setCellSelectionEnabled(false);
         unitTable.setRowSelectionAllowed(false);
 
+        //Select Course Button
+        selectCourseBtn.setBounds(250, 400, 400, 75);
+        selectCourseBtn.setFont(h2);
+        selectCourseBtn.addActionListener (new ActionListener() {
+            //Called when an item has been selected
+            public void actionPerformed(ActionEvent e) {
+
+                if(selectedCourseID > 0){
+                    //enrol
+                    //Main.Alert("UserID: " + Main.userID + "\nName: " + Main.username);
+                    Main.database.insertSelectedCourse(Main.userID, selectedCourseID);
+                    Main.Alert("You have selected:\n'" + selectedCourse + "'");
+                }
+                else{
+                    Main.Alert("Pleaes select a Course.");
+                }
+            }
+        });
     }
 
     //Add the Components
@@ -279,6 +300,7 @@ public class CoursePanel extends JPanel {
         header.setLayout(new BorderLayout());
         content.add(courseTitle);
         content.add(unitTable);
+        content.add(selectCourseBtn);
         content.setLayout(new BorderLayout());
         panel.add(header);
         panel.add(content);
