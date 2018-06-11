@@ -7,13 +7,13 @@ public class Database {
     static final String DRIVER = "com.mysql.jdbc.Driver";
 
     //Reference to the server
-    static final String SERVER = "jdbc:mysql://localhost:3306/EITS";
+    static final String SERVER = "jdbc:mysql://localhost:8889/eits";
 
     //Database Username
     static final String USERNAME = "root";
 
     //Database Password
-    static final String PASSWORD = "";
+    static final String PASSWORD = "root";
 
     public Database(){
 
@@ -217,7 +217,7 @@ public class Database {
             Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
 
             //Our SQL query
-            String sql = "SELECT * FROM Courses WHERE ID = '" + courseID + "'";
+            String sql = "SELECT * FROM Courses WHERE ID = '" + courseID + "';";
 
             //create the java statement
             Statement statement = con.createStatement();
@@ -225,7 +225,17 @@ public class Database {
             //execute the statement
             ResultSet row = statement.executeQuery(sql);
 
-            return row.getString("Name");
+            while (row.next()){
+
+                String name = row.getString("Name");
+
+                if(!name.isEmpty()){
+                    return name;
+                }
+                else{
+                    return "No Course Selected";
+                }
+            }
 
         } catch(Exception ex){
 
@@ -233,10 +243,12 @@ public class Database {
             System.err.println(ex.getMessage());
 
             //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+            Main.Alert("Error Connecting to Database!");
 
             return "";
         }
+
+        return "No Course Selected";
     }
 
     //Compares the username and password to the database username and password

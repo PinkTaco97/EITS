@@ -73,6 +73,7 @@ public class StaffPanel extends JPanel {
 
             //set the tables model
             staffTable.setModel(model);
+
         }catch(Exception ex){
             //we got an exception
             System.err.println(ex.getMessage());
