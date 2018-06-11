@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class CoursePanel extends JPanel {
 
-    //Components
+    //GUI Components
     public static JPanel panel = new JPanel();
     public static JPanel header = new JPanel();
     public static JLabel industryText = new JLabel("Select Industry", JLabel.CENTER);
@@ -47,7 +47,7 @@ public class CoursePanel extends JPanel {
 
     public static boolean changingCourse = false;
 
-
+    //Constructor
     public CoursePanel(){
         loadIndustrys();
         loadCourses(selectedIndustryID);

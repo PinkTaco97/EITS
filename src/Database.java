@@ -1,3 +1,5 @@
+import com.sun.tools.javac.comp.Check;
+
 import javax.swing.*;
 import java.sql.*;
 
@@ -15,11 +17,11 @@ public class Database {
     //Database Password
     static final String PASSWORD = "root";
 
-    public Database(){
-
-    }
-
-    //Check the database to see whether the Username is taken
+    /*
+    * Check the database to see whether the Username is taken.
+    * Returns TRUE if the Username is taken.
+    * Returns FALSE if the Username is free.
+    */
     public Boolean isUsernameTaken(String username) {
 
         //Try to connect to the database
@@ -50,20 +52,25 @@ public class Database {
             //The Username isnt taken
             return false;
 
-        } catch(Exception ex){
+        }//If we get an Exception
+        catch(Exception ex){
 
-            //We got an Exception
+            //Print the Exception to the console
             System.err.println(ex.getMessage());
 
-            //Alert Error
-            Main.Alert(" Error Connecting to Database!");
+            //Alert the Error to the user
+            Main.Alert("Error Connecting to Database!");
 
         }
         return null;
     }
 
-    //Insert a User into the database
-    public void insertUser(String username, String password, String email, int access){
+    /*
+    * Insert a User into the database.
+    * Returns TRUE if the User was inserted.
+    * Returns FALSE if the User wasn't inserted.
+    */
+    public Boolean insertUser(String username, String password, String email, int access){
         //Try to connect to the database
         try {
 
@@ -92,14 +99,29 @@ public class Database {
             //Reset the Eamil InputField
             Main.registerPanel.emailInput.setText("");
 
-        } catch(Exception ex){
+            //The User was added to the database
+            return true;
 
-            //We got an Exception
-            Main.Alert(" Error Connecting to Database!");
+        }//If we get an Exception
+        catch(Exception ex){
+
+            //Print the Exception to the console
+            System.err.println(ex.getMessage());
+
+            //Alert the Error to the user
+            Main.Alert("Error Connecting to Database!");
+
+            //The User was not added to the database
+            return false;
+
         }
     }
 
-    //Insert an Industry into the database
+    /*
+    * Insert an Industry into the database.
+    * Returns TRUE if the Industry was inserted.
+    * Returns FALSE if the Industry wasn't inserted.
+    */
     public Boolean insertIndustry(String name){
         //Try to connect to the database
         try {
@@ -120,21 +142,28 @@ public class Database {
             //Alert the user that the registration was successful
             Main.Alert("Inserted Industry: \n'" + name + "'\n Into the Database.");
 
+            //The Industry was added to the database
             return true;
 
-        } catch(Exception ex){
+        }//If we get an Exception
+        catch(Exception ex){
 
-            //We got an Exception
+            //Print the Exception to the console
             System.err.println(ex.getMessage());
 
-            //Alert Error
+            //Alert the Error to the user
             Main.Alert("Error Connecting to Database!");
 
+            //The Industry was not added to the database
             return false;
         }
     }
 
-    //Insert a Course into the database
+    /*
+    * Insert a Course into the database.
+    * Returns TRUE if the Course was inserted.
+    * Returns FALSE if the Course wasn't inserted.
+    */
     public Boolean insertCourse(String name, int industryID){
         //Try to connect to the database
         try {
@@ -155,21 +184,28 @@ public class Database {
             //Alert the user that the registration was successful
             Main.Alert("Inserted Course:\n '" + name + "'\n Into the Database");
 
+            //The Course was added to the database
             return true;
 
-        } catch(Exception ex){
+        }//If we get an Exception
+        catch(Exception ex){
 
-            //We got an Exception
+            //Print the Exception to the console
             System.err.println(ex.getMessage());
 
-            //Alert Error
+            //Alert the Error to the user
             Main.Alert("Error Connecting to Database!");
 
+            //The course was not added to the database
             return false;
         }
     }
 
-    //Insert a Unit into the database
+    /*
+    * Insert a Unit into the database.
+    * Returns TRUE if the Unit was inserted.
+    * Returns FALSE if the Unit wasn't inserted.
+    */
     public Boolean insertUnit(String code, String description, int courseID){
         //Try to connect to the database
         try {
@@ -190,21 +226,25 @@ public class Database {
             //Alert the user that the registration was successful
             Main.Alert("Inserted Unit:\n '" + code + " - " + description + "'\n Into the Database");
 
+            //The Unit was added to the database
             return true;
 
-        } catch(Exception ex){
+        }//If we get an Exception
+        catch(Exception ex){
 
-            //We got an Exception
+            //Print the Exception to the console
             System.err.println(ex.getMessage());
 
-            //Alert Error
+            //Alert the Error to the user
             Main.Alert("Error Connecting to Database!");
 
+            //The Unit was not added to the database
             return false;
+
         }
     }
 
-    //Insert the selected Course
+    //Insert the selected Course.
     public static void insertSelectedCourse(int userID, int courseID){
         //Try to connect to the database
         try{
@@ -215,25 +255,31 @@ public class Database {
             //Our SQL query
             String sql = "UPDATE Users SET CourseID = " + courseID + " WHERE ID = '" + userID + "';";
 
-            // create the mysql insert preparedstatement
+            //Create the preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(sql);
 
-            // execute the preparedstatement
+            //Execute the preparedstatement
             preparedStmt.execute();
 
+            //Alert the user that the Course was selected
             Main.Alert("Selected Successfully!");
 
-        }
+        }//If we get an Exception
         catch(Exception ex){
-            //We got an Exception
+
+            //Print the Exception to the console
             System.err.println(ex.getMessage());
 
-            //Alert Error
+            //Alert the Error to the user
             Main.Alert("Error Connecting to Database!");
+
         }
     }
 
-    //Get the Course Name
+    /*
+    * Get the Course Name.
+    * Returns the CourseName.
+    */
     public static String getCourseName(int courseID){
         //Try to connect to the database
         try {
@@ -245,17 +291,21 @@ public class Database {
             //Our SQL query
             String sql = "SELECT * FROM Courses WHERE ID = '" + courseID + "';";
 
-            //create the java statement
+            //Create the java statement
             Statement statement = con.createStatement();
 
-            //execute the statement
+            //Execute the statement
             ResultSet row = statement.executeQuery(sql);
 
+            //Iterate through the results
             while (row.next()){
 
+                //Get the Course Name
                 String name = row.getString("Name");
 
+                //if the name isnt empty
                 if(!name.isEmpty()){
+                    //Return the Course Name
                     return name;
                 }
                 else{
@@ -277,9 +327,11 @@ public class Database {
         return "No Course Selected";
     }
 
-    //Compares the username and password to the database username and password
-    //Returns userID if they matched
-    //Returns 0 if no match in database
+    /*
+    * Compares the username and password to the database username and password.
+    * Returns userID if they matched.
+    * Returns 0 if no match in database.
+    */
     public int Login(String username, String password) {
         //Try to connect to the database
         try {
@@ -302,13 +354,16 @@ public class Database {
                 if (row.getString("Username").equalsIgnoreCase(username)) {
                     //Check the Password coresponding password
                     if (row.getString("Password").equalsIgnoreCase(password)) {
+                        //Set the UserID
                         Main.userID = row.getInt("ID");
+                        //Return the Users ID.
                         return row.getInt("ID");
                     }
                 }
             }
-        } catch (Exception ex) {
-            //We got an Exception
+        }//If we get an Exception
+        catch (Exception ex) {
+            //Print the Exception to the console
             System.err.println(ex.getMessage());
 
             //Alert Error

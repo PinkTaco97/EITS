@@ -194,6 +194,7 @@ public class AddCoursePanel extends JPanel {
                 if(selectedIndustryID > 0){
                     if(!course.isEmpty()){
                         Main.database.insertCourse(course, selectedIndustryID);
+                        courseInput.setText("");
                     }
                     else{
                         Main.Alert("Please input a Course name.");
