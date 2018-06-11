@@ -1,8 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,7 +22,7 @@ public class CoursePanel extends JPanel {
     public static JComboBox courseInput = new JComboBox();
     public static JPanel content = new JPanel();
     public static JLabel courseTitle = new JLabel("", JLabel.CENTER);
-    public static JButton selectCourseBtn = new JButton("Select Course");
+    public static JButton selectCourseBtn = new JButton();
 
     //The units table
     public static DefaultTableModel model;
@@ -37,6 +40,10 @@ public class CoursePanel extends JPanel {
     public static final Color textColor = new Color(51,51,51);
     public static final Color gridColor = new Color(51, 51, 51);
 
+    //Images
+    public static BufferedImage selectBtn_Unselected;
+    public static BufferedImage selectBtn_Selected;
+
     //The Selected industry ID
     public static int selectedIndustryID = 0;
     public static String selectedIndustry = "";
@@ -49,10 +56,26 @@ public class CoursePanel extends JPanel {
 
     //Constructor
     public CoursePanel(){
+        loadImages();
         loadIndustrys();
         loadCourses(selectedIndustryID);
         setupComponents();
         addComponents();
+    }
+
+    public static void loadImages(){
+        //try to load the Images
+        try {
+
+            //Select Course Button Images
+            selectBtn_Unselected = ImageIO.read(new File("images/SelectCourse_Unselected.png"));
+            selectBtn_Selected = ImageIO.read(new File("images/SelectCourse_Selected.png"));
+
+        } catch (Exception ex) {
+
+            //Print the error to the console
+            System.out.println(ex.getMessage());
+        }
     }
 
     //Load the Industrys from the database
@@ -272,7 +295,10 @@ public class CoursePanel extends JPanel {
 
         //Select Course Button
         selectCourseBtn.setBounds(250, 400, 400, 75);
-        selectCourseBtn.setFont(h2);
+        selectCourseBtn.setOpaque(false);
+        selectCourseBtn.setIcon(new ImageIcon(selectBtn_Unselected));
+        selectCourseBtn.setRolloverIcon(new ImageIcon(selectBtn_Selected));
+        selectCourseBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         selectCourseBtn.addActionListener (new ActionListener() {
             //Called when an item has been selected
             public void actionPerformed(ActionEvent e) {

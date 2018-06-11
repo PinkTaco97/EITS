@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class SettingsPanel {
 
@@ -12,7 +15,7 @@ public class SettingsPanel {
     public static JTextField passwordInput = new JTextField();
     public static JLabel emailText = new JLabel("Email:");
     public static JTextField emailInput = new JTextField();
-    public static JButton updateBtn = new JButton("Update");
+    public static JButton updateBtn = new JButton();
 
     //Fonts
     public static final String fontFamily = "Apple Casual";
@@ -25,9 +28,29 @@ public class SettingsPanel {
     public static final Color backgroundColor = new Color(255,255,255);
     public static final Color textColor = new Color(51,51,51);
 
+    //Images
+    public static BufferedImage updateBtn_Unselected;
+    public static BufferedImage updateBtn_Selected;
+
     public SettingsPanel(){
+        loadImages();
         setupComponents();
         addComponents();
+    }
+
+    public static void loadImages(){
+        //try to load the Images
+        try {
+
+            //Select Course Button Images
+            updateBtn_Unselected = ImageIO.read(new File("images/Update_Unselected.png"));
+            updateBtn_Selected = ImageIO.read(new File("images/Update_Selected.png"));
+
+        } catch (Exception ex) {
+
+            //Print the error to the console
+            System.out.println(ex.getMessage());
+        }
     }
 
     //Setup the Components
@@ -68,7 +91,10 @@ public class SettingsPanel {
 
         //Update Button
         updateBtn.setBounds(250, 525 , 400, 75);
-        updateBtn.setFont(h2);
+        updateBtn.setOpaque(false);
+        updateBtn.setIcon(new ImageIcon(updateBtn_Unselected));
+        updateBtn.setRolloverIcon(new ImageIcon(updateBtn_Selected));
+        updateBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
     }
 
