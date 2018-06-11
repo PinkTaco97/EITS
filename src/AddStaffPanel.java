@@ -8,7 +8,7 @@ import java.io.File;
 
 public class AddStaffPanel extends JPanel {
 
-    //Components
+    //GUI Components
     public static JPanel panel = new JPanel();
     public static JLabel title = new JLabel("Add Staff Account", JLabel.CENTER);
     public static JLabel usernameText = new JLabel("Username:");

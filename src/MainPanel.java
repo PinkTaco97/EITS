@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class MainPanel {
 
-    //Components
+    //GUI Components
     public static JPanel panel = new JPanel();
     public static JPanel navbar = new JPanel();
     public static JLabel welcome = new JLabel("Welcome, ", JLabel.CENTER);

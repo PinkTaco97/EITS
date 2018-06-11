@@ -8,7 +8,7 @@ import java.io.File;
 
 public class AddIndustryPanel extends JPanel {
 
-    //Components
+    //GUI Components
     public static JPanel panel = new JPanel();
     public static JLabel title = new JLabel("Add Industry", JLabel.CENTER);
     public static JLabel industryText = new JLabel("Industry Name:");

@@ -1,5 +1,3 @@
-import com.sun.tools.javac.comp.Check;
-
 import javax.swing.*;
 import java.sql.*;
 

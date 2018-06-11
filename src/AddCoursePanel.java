@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class AddCoursePanel extends JPanel {
 
-    //Components
+    //GUI Components
     public static JPanel panel = new JPanel();
     public static JLabel title = new JLabel("Add Course", JLabel.CENTER);
     public static JLabel industryText = new JLabel("Select Industry");
@@ -189,24 +189,29 @@ public class AddCoursePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                //Get what the User entered
                 String course = courseInput.getText();
 
+                //If the User selected an Industry
                 if(selectedIndustryID > 0){
+                    //If the User entered a Course
                     if(!course.isEmpty()){
+                        //Insert the Course into the database
                         Main.database.insertCourse(course, selectedIndustryID);
+                        //Reset the Course Input
                         courseInput.setText("");
                     }
                     else{
+                        //Alert the user to input a Course name
                         Main.Alert("Please input a Course name.");
                     }
                 }
                 else{
+                    //Alert the User to select an Industry
                     Main.Alert("Please Select an Industry");
                 }
             }
-
         });
-
     }
 
     //Add the components to the panel

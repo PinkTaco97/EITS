@@ -8,7 +8,7 @@ import java.io.File;
 
 public class LoginPanel {
 
-    //Create Components
+    //GUI Components
     public static JPanel panel = new JPanel();
     public static JLabel background = new JLabel();
     public static JLabel heading = new JLabel("Welcome to EITS", JLabel.CENTER);

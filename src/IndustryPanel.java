@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class IndustryPanel {
 
-    //Create Components
+    //GUI Components
     public static JPanel panel = new JPanel();
     public static JPanel navBar = new JPanel();
     public static JLabel heading = new JLabel("Select Industry", JLabel.CENTER);

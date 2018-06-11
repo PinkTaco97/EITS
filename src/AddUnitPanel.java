@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class AddUnitPanel extends JPanel {
 
-    //Components
+    //GUI Components
     public static JPanel panel = new JPanel();
     public static JLabel title = new JLabel("Add Unit", JLabel.CENTER);
     public static JLabel courseText = new JLabel("Select Course:");

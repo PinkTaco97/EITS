@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class SettingsPanel {
 
-    //Components
+    //GUIComponents
     public static JPanel panel = new JPanel();
     public static JLabel title = new JLabel("Account Settings", JLabel.CENTER);
     public static JLabel usernameText = new JLabel("Username:");
@@ -13,9 +13,6 @@ public class SettingsPanel {
     public static JLabel emailText = new JLabel("Email:");
     public static JTextField emailInput = new JTextField();
     public static JButton updateBtn = new JButton("Update");
-
-
-
 
     //Fonts
     public static final String fontFamily = "Apple Casual";
