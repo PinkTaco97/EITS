@@ -1,5 +1,7 @@
 import javax.swing.*;
+import java.net.InetAddress;
 import java.sql.*;
+import java.util.Date;
 
 public class Database {
 
@@ -352,10 +354,29 @@ public class Database {
                 if (row.getString("Username").equalsIgnoreCase(username)) {
                     //Check the Password coresponding password
                     if (row.getString("Password").equalsIgnoreCase(password)) {
+
                         //Set the UserID
-                        Main.userID = row.getInt("ID");
+                        int userID = row.getInt("ID");
+                        Main.userID = userID;
+
+                        //Get the current Date and Time
+                        Date now = new Date();
+
+                        //Get the current IP Address
+                        InetAddress IP=InetAddress.getLocalHost();
+                        String ipAddress = IP.getHostAddress();
+
+                        //Set the user to active
+                        String sql1 = "UPDATE Users SET Active = '1', LastLoggedIn = '" + now + "', IPAddress = '" + ipAddress + "' WHERE ID='" + userID + "';";
+
+                        //Create the preparedstatement
+                        PreparedStatement preparedStmt = con.prepareStatement(sql1);
+
+                        //Execute the preparedstatement
+                        preparedStmt.execute();
+
                         //Return the Users ID.
-                        return row.getInt("ID");
+                        return userID;
                     }
                 }
             }
@@ -424,7 +445,7 @@ public class Database {
     * Updates the User in the database
     */
     public static void updateUser(int userID, String username, String password, String email){
-//Try to connect to the database
+        //Try to connect to the database
         try{
 
             //Create a Connection to the database
@@ -433,6 +454,33 @@ public class Database {
 
             //Our SQL Code
             String sql = "UPDATE Users SET Username = '" + username + "', Password = '" + password + "', Email = '" + email + "' WHERE ID='" + userID + "';";
+
+            //Create the preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(sql);
+
+            //Execute the preparedstatement
+            preparedStmt.execute();
+
+        } //If we get an exception
+        catch(Exception ex){
+
+            //Print the Exception to the console
+            System.err.println(ex.getMessage());
+
+        }
+    }
+
+    //Log the user out
+    public static void Logout(int userID){
+        //Try to connect to the database
+        try{
+
+            //Create a Connection to the database
+            Class.forName(DRIVER);
+            Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
+
+            //Our SQL Code
+            String sql = "UPDATE Users SET Active = '0' WHERE ID='" + userID + "';";
 
             //Create the preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(sql);

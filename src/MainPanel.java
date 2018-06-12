@@ -320,6 +320,7 @@ public class MainPanel {
         addUnitPanel.panel.setVisible(false);
         addStaffPanel.panel.setVisible(false);
         StaffPanel.panel.setVisible(false);
+        Main.database.Logout(Main.userID);
     }
 
     //Show the account settings

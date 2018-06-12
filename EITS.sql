@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 12, 2018 at 09:05 AM
+-- Generation Time: Jun 12, 2018 at 11:34 AM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -62,21 +62,23 @@ CREATE TABLE `Users` (
   `Password` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `CourseID` int(11) DEFAULT NULL,
-  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Access` int(11) NOT NULL
+  `Access` int(11) NOT NULL,
+  `LastLoggedIn` varchar(255) NOT NULL,
+  `Active` int(11) NOT NULL,
+  `IPAddress` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`ID`, `Username`, `Password`, `Email`, `CourseID`, `Time`, `Access`) VALUES
-(1, 'admin', 'admin', 'admin@example.com', 1, '2018-06-11 23:00:45', 0),
-(2, 'Nathan', 'nathan', 'nathan@example.com', NULL, '2018-06-11 23:01:39', 2),
-(3, 'Liana', 'liana', 'liana@example.com', NULL, '2018-06-11 23:01:55', 2),
-(4, 'Kaitlyn', 'kaitlyn', 'kaitlyn@example.com', NULL, '2018-06-11 23:02:14', 2),
-(5, 'Rani', 'rani', 'rani@example.com', NULL, '2018-06-11 23:02:43', 2),
-(6, 'staff', 'staff', 'staff@example.com', NULL, '2018-06-11 23:03:14', 1);
+INSERT INTO `Users` (`ID`, `Username`, `Password`, `Email`, `CourseID`, `Access`, `LastLoggedIn`, `Active`, `IPAddress`) VALUES
+(1, 'admin', 'admin', 'admin@example.com', 1, 0, '', 0, ''),
+(2, 'Nathan', 'nathan', 'nathan@example.com', NULL, 2, '', 0, ''),
+(3, 'Liana', 'liana', 'liana@example.com', NULL, 2, '', 0, ''),
+(4, 'Kaitlyn', 'kaitlyn', 'kaitlyn@example.com', NULL, 2, '', 0, ''),
+(5, 'Rani', 'rani', 'rani@example.com', NULL, 2, '', 0, ''),
+(6, 'staff', 'staff', 'staff@example.com', NULL, 1, '', 0, '');
 
 --
 -- Indexes for dumped tables
