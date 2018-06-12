@@ -1,6 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -12,7 +14,7 @@ public class SettingsPanel {
     public static JLabel usernameText = new JLabel("Username:");
     public static JTextField usernameInput = new JTextField();
     public static JLabel passwordText = new JLabel("Password:");
-    public static JTextField passwordInput = new JTextField();
+    public static JPasswordField passwordInput = new JPasswordField();
     public static JLabel emailText = new JLabel("Email:");
     public static JTextField emailInput = new JTextField();
     public static JButton updateBtn = new JButton();
@@ -32,12 +34,14 @@ public class SettingsPanel {
     public static BufferedImage updateBtn_Unselected;
     public static BufferedImage updateBtn_Selected;
 
+    //Constructor
     public SettingsPanel(){
         loadImages();
         setupComponents();
         addComponents();
     }
 
+    //Try to load the Images
     public static void loadImages(){
         //try to load the Images
         try {
@@ -50,6 +54,31 @@ public class SettingsPanel {
 
             //Print the error to the console
             System.out.println(ex.getMessage());
+        }
+    }
+
+    //Load the users Username, Password and Email
+    public static void loadUser(){
+        //Load the users Username, Password and Email
+        String[] user = Main.database.LoadUser(Main.userID);
+
+        //If the Username is not empty
+        if(!user[0].isEmpty()){
+            //If the Password is not empty
+            if(!user[1].isEmpty()){
+                //If the Email is not empty
+                if(!user[2].isEmpty()){
+
+                    //Set the username to the Users Username
+                    usernameInput.setText(user[0]);
+
+                    //Set the password to the Users Password
+                    passwordInput.setText(user[1]);
+
+                    //Set the email to the Users Email
+                    emailInput.setText(user[2]);
+                }
+            }
         }
     }
 
@@ -95,6 +124,25 @@ public class SettingsPanel {
         updateBtn.setIcon(new ImageIcon(updateBtn_Unselected));
         updateBtn.setRolloverIcon(new ImageIcon(updateBtn_Selected));
         updateBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        updateBtn.addActionListener(new ActionListener(){
+
+            //When the Logout Button is clicked
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                //Get what the user entered
+                String username = usernameInput.getText();
+                String password = new String(passwordInput.getPassword());
+                String email = emailInput.getText();
+
+                //Update the user
+                Main.database.updateUser(Main.userID, username, password, email);
+
+                //Alert the user
+                Main.Alert("User Updated");
+            }
+
+        });
 
     }
 

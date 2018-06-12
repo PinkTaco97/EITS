@@ -371,4 +371,81 @@ public class Database {
         //Wrong Username or Password
         return 0;
     }
+
+    /*
+    * Load The users Username Password and Email from the database
+    * Return the Username, Password and Email
+    */
+    public static String[] LoadUser(int userID){
+        //Try to connect to the database
+        try{
+
+            //Create a Connection to the database
+            Class.forName(DRIVER);
+            Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
+
+            //Our SQL Code
+            String sql = "SELECT * from Users WHERE ID='" + userID + "';";
+
+            //Create the java statement
+            Statement statement = con.createStatement();
+
+            //Execute the query and get the result
+            ResultSet row = statement.executeQuery(sql);
+
+            //Iterate through the results
+            while (row.next()){
+
+                //Get the Username
+                String username = row.getString("Username");
+                //Get the Password
+                String password = row.getString("Password");
+                //Get the Email
+                String email = row.getString("Email");
+
+                //Return the users data
+                return new String[]{username, password, email};
+            }
+
+
+        } //If we get an exception
+        catch(Exception ex){
+
+            //Print the Exception to the console
+            System.err.println(ex.getMessage());
+
+        }
+
+        //Return an empty string
+        return new String[]{"", "", ""};
+    }
+
+    /*
+    * Updates the User in the database
+    */
+    public static void updateUser(int userID, String username, String password, String email){
+//Try to connect to the database
+        try{
+
+            //Create a Connection to the database
+            Class.forName(DRIVER);
+            Connection con = DriverManager.getConnection(SERVER, USERNAME, PASSWORD);
+
+            //Our SQL Code
+            String sql = "UPDATE Users SET Username = '" + username + "', Password = '" + password + "', Email = '" + email + "' WHERE ID='" + userID + "';";
+
+            //Create the preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(sql);
+
+            //Execute the preparedstatement
+            preparedStmt.execute();
+
+        } //If we get an exception
+        catch(Exception ex){
+
+            //Print the Exception to the console
+            System.err.println(ex.getMessage());
+
+        }
+    }
 }

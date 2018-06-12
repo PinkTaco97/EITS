@@ -326,6 +326,7 @@ public class MainPanel {
     public static void ShowSettings(){
         coursePanel.panel.setVisible(false);
         settingsPanel.panel.setVisible(true);
+        settingsPanel.loadUser();
     }
 
     //Show the Course Selection
