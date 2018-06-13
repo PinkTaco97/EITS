@@ -183,7 +183,7 @@ public class CoursePanel extends JPanel {
             };
 
             //Add the table heading
-            model.addRow(new Object[]{"Unit Code", " Unit Description"});
+            model.addRow(new Object[]{" Unit Code", "  Unit Description"});
 
             //Iterate through the results
             while (row.next()) {
@@ -200,8 +200,8 @@ public class CoursePanel extends JPanel {
 
             //set the Tables model
             unitTable.setModel(model);
-            unitTable.getColumnModel().getColumn(0).setPreferredWidth(100);
-            unitTable.getColumnModel().getColumn(1).setPreferredWidth(800);
+            unitTable.getColumnModel().getColumn(0).setPreferredWidth(150);
+            unitTable.getColumnModel().getColumn(1).setPreferredWidth(750);
 
         } catch (Exception ex) {
 
@@ -209,7 +209,7 @@ public class CoursePanel extends JPanel {
             System.err.println(ex.getMessage());
 
             //Alert Error
-            JOptionPane.showMessageDialog(Main.frame, " Error Connecting to Database!");
+            JOptionPane.showMessageDialog(Main.frame, "Error Connecting to Database!");
         }
     }
 

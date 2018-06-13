@@ -140,6 +140,9 @@ public class SettingsPanel {
 
                 //Alert the user
                 Main.Alert("User Updated");
+
+                //Load the user
+                loadUser();
             }
 
         });

@@ -248,6 +248,10 @@ public class Main {
         //Hide Industry Panel
         mainPanel.panel.setVisible(false);
 
+        //Hide student nav
+        mainPanel.menuItem1.setVisible(false);
+        mainPanel.menuItem2.setVisible(false);
+
         //Show Login Panel
         loginPanel.panel.setVisible(true);
     }

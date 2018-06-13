@@ -44,35 +44,42 @@ public class StaffPanel extends JPanel {
             //execute the statement
             ResultSet row = statement.executeQuery(sql);
 
-            model = new DefaultTableModel(new String[]{"Student Name", "Email", "Selected Course"}, 0)
+            model = new DefaultTableModel(new String[]{"Student Name", "Email", "Selected Course", "Last Logged In"}, 0)
             {
                 public boolean isCellEditable(int row, int column){return false;}
             };
 
             //add the table heading
-            model.addRow(new Object[]{"Student Name", "Email", "Selected Course"});
+            model.addRow(new Object[]{" Student Name", " Email", " Selected Course", " Last Logged In"});
 
             //iterate through the results
             while (row.next()) {
 
                 //get the student name from the database
-                String name = row.getString("Username");
+                String name = " " + row.getString("Username");
 
                 //get the email from the database
-                String email = row.getString("Email");
+                String email = " " + row.getString("Email");
 
                 //get the selected courseID from the database
                 int selectedCourseID = row.getInt("CourseID");
 
                 //get the selected course name from the database
-                String selectedCourseName = Main.database.getCourseName(selectedCourseID);
+                String selectedCourseName = " " + Main.database.getCourseName(selectedCourseID);
+
+                //Get the Last Logged In
+                String lastLoggedIn = " " + row.getString("LastLoggedIn");
 
                 //add the row to the table model
-                model.addRow(new Object[]{name, email, selectedCourseName});
+                model.addRow(new Object[]{name, email, selectedCourseName, lastLoggedIn});
             }
 
             //set the tables model
             staffTable.setModel(model);
+            staffTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            staffTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            staffTable.getColumnModel().getColumn(2).setPreferredWidth(250);
+            staffTable.getColumnModel().getColumn(3).setPreferredWidth(250);
 
         }catch(Exception ex){
             //we got an exception
@@ -96,7 +103,7 @@ public class StaffPanel extends JPanel {
 
         //staff table
         staffTable.setBounds(0, 100, 900, 350);
-        staffTable.setFont(h3);
+        staffTable.setFont(h4);
         staffTable.setRowHeight(30);
         staffTable.setGridColor(gridColour);
         staffTable.setCellSelectionEnabled(false);
