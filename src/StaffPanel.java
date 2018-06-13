@@ -1,6 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.*;
 
 public class StaffPanel extends JPanel {
@@ -9,6 +14,7 @@ public class StaffPanel extends JPanel {
     public static JLabel title = new JLabel("Staff Panel", JLabel.CENTER);
     public static DefaultTableModel model;
     public static JTable staffTable = new JTable();
+    public static JButton refreshBtn = new JButton();
 
     //colour
     public static Color backgroundColour = new Color(255, 255, 255);
@@ -22,11 +28,31 @@ public class StaffPanel extends JPanel {
     public static Font h3 = new Font(fontFamily, Font.PLAIN, 20);
     public static Font h4 = new Font(fontFamily, Font.PLAIN, 15);
 
+    //Images
+    public static BufferedImage refreshBtn_Selected;
+    public static BufferedImage refreshBtn_Unselected;
+
     public StaffPanel() {
+        loadImages();
         loadStudents();
         setupComponents();
         addComponents();
+    }
 
+    //Load the Images
+    public static void loadImages(){
+        //Try to load the images
+        try{
+
+            //Add Refresh Btn Images
+            refreshBtn_Unselected = ImageIO.read(new File("images/Refresh_Unselected.png"));
+            refreshBtn_Selected = ImageIO.read(new File("images/Refresh_Selected.png"));
+
+        }
+        catch(Exception ex){
+            //Print error to the console
+            System.out.println(ex.getMessage());
+        }
     }
 
     //load the students information from the database
@@ -108,10 +134,29 @@ public class StaffPanel extends JPanel {
         staffTable.setGridColor(gridColour);
         staffTable.setCellSelectionEnabled(false);
         staffTable.setRowSelectionAllowed(false);
+
+        //Refresh Button
+        refreshBtn.setBounds(825, 25, 50,50);
+        refreshBtn.setOpaque(false);
+        refreshBtn.setContentAreaFilled(false);
+        refreshBtn.setBorderPainted(false);
+        refreshBtn.setIcon(new ImageIcon(refreshBtn_Unselected));
+        refreshBtn.setRolloverIcon(new ImageIcon(refreshBtn_Selected));
+        refreshBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        refreshBtn.addActionListener(new ActionListener() {
+
+            //When the Refresh button is clicked
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //your actions
+                loadStudents();
+            }
+        });
     }
 
     //Add the components to the panel
     public static void addComponents(){
+        panel.add(refreshBtn);
         panel.add(title);
         panel.add(staffTable);
         panel.setLayout(new BorderLayout());

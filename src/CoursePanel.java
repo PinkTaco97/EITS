@@ -23,6 +23,9 @@ public class CoursePanel extends JPanel {
     public static JPanel content = new JPanel();
     public static JLabel courseTitle = new JLabel("", JLabel.CENTER);
     public static JButton selectCourseBtn = new JButton();
+    public static JButton helpBtn = new JButton();
+    public static JPanel helpPanel = new JPanel();
+    public static JButton closeBtn = new JButton();
 
     //The units table
     public static DefaultTableModel model;
@@ -43,6 +46,10 @@ public class CoursePanel extends JPanel {
     //Images
     public static BufferedImage selectBtn_Unselected;
     public static BufferedImage selectBtn_Selected;
+    public static BufferedImage helpBtn_Unselected;
+    public static BufferedImage helpBtn_Selected;
+    public static BufferedImage closeBtn_Unselected;
+    public static BufferedImage closeBtn_Selected;
 
     //The Selected industry ID
     public static int selectedIndustryID = 0;
@@ -70,6 +77,14 @@ public class CoursePanel extends JPanel {
             //Select Course Button Images
             selectBtn_Unselected = ImageIO.read(new File("images/SelectCourse_Unselected.png"));
             selectBtn_Selected = ImageIO.read(new File("images/SelectCourse_Selected.png"));
+
+            //Help Button Images
+            helpBtn_Unselected = ImageIO.read(new File("images/Help_Unselected.png"));
+            helpBtn_Selected = ImageIO.read(new File("images/Help_Selected.png"));
+
+            //Close Button Images
+            closeBtn_Unselected = ImageIO.read(new File("images/Close_Unselected.png"));
+            closeBtn_Selected = ImageIO.read(new File("images/Close_Selected.png"));
 
         } catch (Exception ex) {
 
@@ -296,6 +311,8 @@ public class CoursePanel extends JPanel {
         //Select Course Button
         selectCourseBtn.setBounds(250, 400, 400, 75);
         selectCourseBtn.setOpaque(false);
+        selectCourseBtn.setContentAreaFilled(false);
+        selectCourseBtn.setBorderPainted(false);
         selectCourseBtn.setIcon(new ImageIcon(selectBtn_Unselected));
         selectCourseBtn.setRolloverIcon(new ImageIcon(selectBtn_Selected));
         selectCourseBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -314,6 +331,41 @@ public class CoursePanel extends JPanel {
                 }
             }
         });
+
+        //Help Button
+        helpBtn.setBounds(425, 25, 50, 50);
+        helpBtn.setIcon(new ImageIcon(helpBtn_Unselected));
+        helpBtn.setRolloverIcon(new ImageIcon(helpBtn_Selected));
+        helpBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        helpBtn.setOpaque(false);
+        helpBtn.setContentAreaFilled(false);
+        helpBtn.setBorderPainted(false);
+        helpBtn.addActionListener (new ActionListener() {
+            //Called when an item has been selected
+            public void actionPerformed(ActionEvent e) {
+                ShowHelp();
+            }
+        });
+
+        //Help Panel
+        helpPanel.setBounds(0, 0, 900, 650);
+        helpPanel.setBackground(new Color(255,255,255));
+        helpPanel.setVisible(false);
+
+        //Close Button
+        closeBtn.setBounds(850,0,50,50);
+        closeBtn.setIcon(new ImageIcon(closeBtn_Unselected));
+        closeBtn.setRolloverIcon(new ImageIcon(closeBtn_Selected));
+        closeBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        closeBtn.setOpaque(false);
+        closeBtn.setContentAreaFilled(false);
+        closeBtn.setBorderPainted(false);
+        closeBtn.addActionListener (new ActionListener() {
+            //Called when an item has been selected
+            public void actionPerformed(ActionEvent e) {
+                HideHelp();
+            }
+        });
     }
 
     //Add the Components
@@ -323,13 +375,31 @@ public class CoursePanel extends JPanel {
         header.add(industryInput);
         header.add(courseText);
         header.add(courseInput);
+        header.add(helpBtn);
         header.setLayout(new BorderLayout());
         content.add(courseTitle);
         content.add(unitTable);
         content.add(selectCourseBtn);
         content.setLayout(new BorderLayout());
+        helpPanel.add(closeBtn);
+        helpPanel.setLayout(new BorderLayout());
+        panel.add(helpPanel);
         panel.add(header);
         panel.add(content);
         panel.setLayout(new BorderLayout());
+    }
+
+    //Show the Help Panel
+    public static void ShowHelp(){
+        header.setVisible(false);
+        content.setVisible(false);
+        helpPanel.setVisible(true);
+    }
+
+    //Hide the Help Panel
+    public static void HideHelp(){
+        helpPanel.setVisible(false);
+        header.setVisible(true);
+        content.setVisible(true);
     }
 }
