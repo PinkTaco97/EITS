@@ -9,7 +9,7 @@ public class Database {
     static final String DRIVER = "com.mysql.jdbc.Driver";
 
     //Reference to the server
-    static final String SERVER = "jdbc:mysql://localhost:8889/eits";
+    static final String SERVER = "jdbc:mysql://localhost:8889/EITS";
 
     //Database Username
     static final String USERNAME = "root";

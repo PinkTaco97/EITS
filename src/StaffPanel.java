@@ -121,7 +121,7 @@ public class StaffPanel extends JPanel {
     public static void setupComponents(){
 
         //panel
-        panel.setBounds(50, 75, 900, 450);
+        panel.setBounds(50, 75, 900, 650);
         panel.setBackground(backgroundColour);
         panel.setVisible(false);
 
