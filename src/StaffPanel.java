@@ -1,3 +1,5 @@
+import com.apple.eawt.Application;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -102,9 +104,9 @@ public class StaffPanel extends JPanel {
 
             //set the tables model
             staffTable.setModel(model);
-            staffTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            staffTable.getColumnModel().getColumn(0).setPreferredWidth(150);
             staffTable.getColumnModel().getColumn(1).setPreferredWidth(200);
-            staffTable.getColumnModel().getColumn(2).setPreferredWidth(250);
+            staffTable.getColumnModel().getColumn(2).setPreferredWidth(300);
             staffTable.getColumnModel().getColumn(3).setPreferredWidth(250);
 
         }catch(Exception ex){
@@ -150,6 +152,7 @@ public class StaffPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //your actions
                 loadStudents();
+                Main.Alert("Refreshed Students!");
             }
         });
     }

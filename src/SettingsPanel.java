@@ -86,40 +86,40 @@ public class SettingsPanel {
     public static void setupComponents() {
 
         //Panel
-        panel.setBounds(50, 65, 900, 650);
+        panel.setBounds(250, 65, 500, 650);
         panel.setBackground(backgroundColor);
         panel.setVisible(false);
 
         //Title
-        title.setBounds(0, 25, 900, 75);
+        title.setBounds(0, 25, 500, 75);
         title.setFont(h1);
 
         //Username Text
-        usernameText.setBounds(250, 125, 400, 50);
+        usernameText.setBounds(50, 125, 400, 50);
         usernameText.setFont(h2);
 
         //Username Input
-        usernameInput.setBounds(250, 175, 400, 50);
+        usernameInput.setBounds(50, 175, 400, 50);
         usernameInput.setFont(h2);
 
         //Password Text
-        passwordText.setBounds(250, 250, 400, 50);
+        passwordText.setBounds(50, 250, 400, 50);
         passwordText.setFont(h2);
 
         //Password Input
-        passwordInput.setBounds(250, 300, 400, 50);
+        passwordInput.setBounds(50, 300, 400, 50);
         passwordInput.setFont(h2);
 
         //Email Text
-        emailText.setBounds(250, 375, 400, 50);
+        emailText.setBounds(50, 375, 400, 50);
         emailText.setFont(h2);
 
         //Email Font
-        emailInput.setBounds(250, 425, 400, 50);
+        emailInput.setBounds(50, 425, 400, 50);
         emailInput.setFont(h2);
 
         //Update Button
-        updateBtn.setBounds(250, 525 , 400, 75);
+        updateBtn.setBounds(50, 525 , 400, 75);
         updateBtn.setOpaque(false);
         updateBtn.setIcon(new ImageIcon(updateBtn_Unselected));
         updateBtn.setRolloverIcon(new ImageIcon(updateBtn_Selected));

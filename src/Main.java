@@ -40,6 +40,8 @@ public class Main {
     public static String email;
     public static int access;
 
+    public static Application application = Application.getApplication();
+
     public static void main(String[] args) {
         // write your code here
         createWindow();
@@ -67,7 +69,7 @@ public class Main {
             BufferedImage image = ImageIO.read(new File(bgImage));
 
             //Set the Icon
-            Application application = Application.getApplication();
+
             Image icon = Toolkit.getDefaultToolkit().getImage("images/Icon.png");
             application.setDockIconImage(icon);
 
