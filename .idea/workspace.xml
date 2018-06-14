@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd3da974-6672-4150-8f02-caea7113df14" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Close_Selected.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Close_Selected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Close_Unselected.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Close_Unselected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Help_Selected.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Help_Selected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Help_Unselected.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Help_Unselected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Refresh_Selected.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Refresh_Selected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Refresh_Unselected.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Refresh_Unselected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EITS/CoursePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EITS/CoursePanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EITS/CoursePanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EITS/CoursePanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EITS/CoursePanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EITS/CoursePanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EITS/CoursePanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EITS/CoursePanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EITS/CoursePanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EITS/CoursePanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EITS/CoursePanel$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EITS/CoursePanel$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EITS/CoursePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EITS/CoursePanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CoursePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CoursePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StaffPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaffPanel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,7 +31,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5952">
+            <state relative-caret-position="109">
               <caret line="252" column="44" selection-start-line="252" selection-start-column="44" selection-end-line="252" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -42,8 +55,8 @@
       <file leaf-file-name="CoursePanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/CoursePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+            <state relative-caret-position="308">
+              <caret line="360" column="33" selection-start-line="360" selection-start-column="33" selection-end-line="360" selection-end-column="33" />
               <folding>
                 <element signature="e#11764#11947#0" expanded="true" />
                 <element signature="e#11946#11947#0" expanded="true" />
@@ -598,16 +611,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5952">
-          <caret line="252" column="44" selection-start-line="252" selection-start-column="44" selection-end-line="252" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Database.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
@@ -644,10 +647,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="252" column="44" selection-start-line="252" selection-start-column="44" selection-end-line="252" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/CoursePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+        <state relative-caret-position="308">
+          <caret line="360" column="33" selection-start-line="360" selection-start-column="33" selection-end-line="360" selection-end-column="33" />
           <folding>
             <element signature="e#11764#11947#0" expanded="true" />
             <element signature="e#11946#11947#0" expanded="true" />

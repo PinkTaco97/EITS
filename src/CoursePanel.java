@@ -26,6 +26,7 @@ public class CoursePanel extends JPanel {
     public static JButton helpBtn = new JButton();
     public static JPanel helpPanel = new JPanel();
     public static JButton closeBtn = new JButton();
+    public static JLabel help = new JLabel();
 
     //The units table
     public static DefaultTableModel model;
@@ -50,6 +51,7 @@ public class CoursePanel extends JPanel {
     public static BufferedImage helpBtn_Selected;
     public static BufferedImage closeBtn_Unselected;
     public static BufferedImage closeBtn_Selected;
+    public static BufferedImage helpImg;
 
     //The Selected industry ID
     public static int selectedIndustryID = 0;
@@ -85,6 +87,9 @@ public class CoursePanel extends JPanel {
             //Close Button Images
             closeBtn_Unselected = ImageIO.read(new File("images/Close_Unselected.png"));
             closeBtn_Selected = ImageIO.read(new File("images/Close_Selected.png"));
+
+            //Help Image
+            helpImg = ImageIO.read(new File("images/Help.png"));
 
         } catch (Exception ex) {
 
@@ -353,7 +358,7 @@ public class CoursePanel extends JPanel {
         helpPanel.setVisible(false);
 
         //Close Button
-        closeBtn.setBounds(850,0,50,50);
+        closeBtn.setBounds(825,25,50,50);
         closeBtn.setIcon(new ImageIcon(closeBtn_Unselected));
         closeBtn.setRolloverIcon(new ImageIcon(closeBtn_Selected));
         closeBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -366,6 +371,10 @@ public class CoursePanel extends JPanel {
                 HideHelp();
             }
         });
+
+        //Help
+        help.setBounds(50,50, 800, 600);
+        help.setIcon(new ImageIcon(helpImg));
     }
 
     //Add the Components
@@ -382,6 +391,7 @@ public class CoursePanel extends JPanel {
         content.add(selectCourseBtn);
         content.setLayout(new BorderLayout());
         helpPanel.add(closeBtn);
+        helpPanel.add(help);
         helpPanel.setLayout(new BorderLayout());
         panel.add(helpPanel);
         panel.add(header);
