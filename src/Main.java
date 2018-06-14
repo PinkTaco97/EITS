@@ -1,9 +1,11 @@
+import com.apple.eawt.Application;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import com.apple.eawt.Application;
+//import com.apple.eawt.Application;
 
 public class Main {
 
@@ -40,7 +42,7 @@ public class Main {
     public static String email;
     public static int access;
 
-    public static Application application = Application.getApplication();
+    //public static Application application = Application.getApplication();
 
     public static void main(String[] args) {
         // write your code here
@@ -71,7 +73,7 @@ public class Main {
             //Set the Icon
 
             Image icon = Toolkit.getDefaultToolkit().getImage("images/Icon.png");
-            application.setDockIconImage(icon);
+            //application.setDockIconImage(icon);
 
             //Set the Background image to the background
             backgroundImage.setImage(image);

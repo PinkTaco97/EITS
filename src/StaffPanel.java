@@ -1,5 +1,3 @@
-import com.apple.eawt.Application;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
