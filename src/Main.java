@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import com.apple.eawt.Application;
 
 public class Main {
 
@@ -64,6 +65,11 @@ public class Main {
 
             //Load the Background Image
             BufferedImage image = ImageIO.read(new File(bgImage));
+
+            //Set the Icon
+            Application application = Application.getApplication();
+            Image icon = Toolkit.getDefaultToolkit().getImage("images/Icon.png");
+            application.setDockIconImage(icon);
 
             //Set the Background image to the background
             backgroundImage.setImage(image);
