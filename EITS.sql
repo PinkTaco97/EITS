@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2018 at 04:49 AM
+-- Generation Time: Jun 14, 2018 at 05:21 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -429,7 +429,14 @@ INSERT INTO `units` (`ID`, `Code`, `Description`, `CourseID`) VALUES
 (312, 'SHBBFAS003', 'Provide specialised facial treatments', 31),
 (313, 'SHBBCCS001', 'Advise on beauty products and services', 31),
 (314, 'BSBSMB304', 'Determine resource requirements for the micro business', 31),
-(315, 'SHBBSKS003', 'Design and provide cosmetic tattooing', 31);
+(315, 'SHBBSKS003', 'Design and provide cosmetic tattooing', 31),
+(316, 'BD016', 'Apply OHS requirements, policies and procedures in the construction industry', 19),
+(317, 'BD017', 'Research construction materials and methods for small-scale residential building design projects', 19),
+(318, 'BD018', 'Research compliance requirements for small-scale residential building design projects', 19),
+(319, 'BD019', 'Recommend sustainability solutions for small-scale building design projects', 19),
+(320, 'BD020', 'Develop concepts for small-scale building design projects and finalise solutions with clients', 19),
+(321, 'BD021', 'Produce compliant client-approved designs for small-scale building design projects', 19),
+(322, 'BD022', 'Produce compliant client-approved working drawings for small-scale residential buildings', 19);
 
 -- --------------------------------------------------------
 
@@ -454,10 +461,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `Username`, `Password`, `Email`, `CourseID`, `Access`, `LastLoggedIn`, `Active`, `IPAddress`) VALUES
-(1, 'admin', 'admin', 'admin@example.com', 1, 0, 'Thu Jun 14 11:30:45 AEST 2018', 0, '172.17.120.232'),
+(1, 'admin', 'admin', 'admin@example.com', 1, 0, 'Thu Jun 14 13:17:32 AEST 2018', 0, '172.17.120.232'),
 (2, 'Nathan', 'nathan', 'nathan@example.com', NULL, 2, '', 0, ''),
 (3, 'Liana', 'liana', 'liana@example.com', NULL, 2, '', 0, ''),
-(4, 'Kaitlyn', 'kaitlyn', 'kaitlyn@example.com', 6, 2, 'Thu Jun 14 11:30:26 AEST 2018', 0, '172.17.120.232'),
+(4, 'Kaitlyn', 'kaitlyn', 'kaitlyn@example.com', 6, 2, 'Thu Jun 14 13:20:17 AEST 2018', 1, '172.17.120.232'),
 (5, 'Rani', 'rani', 'rani@example.com', NULL, 2, '', 0, ''),
 (6, 'staff', 'staff', 'staff@example.com', NULL, 1, 'Thu Jun 14 08:36:10 AEST 2018', 1, '172.17.120.232');
 
@@ -509,7 +516,7 @@ ALTER TABLE `industry`
 -- AUTO_INCREMENT for table `units`
 --
 ALTER TABLE `units`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=323;
 
 --
 -- AUTO_INCREMENT for table `users`
