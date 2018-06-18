@@ -100,8 +100,8 @@ public class draganddrop extends JFrame{
        pic7.setDisabledIcon(new ImageIcon());
        pic8.setDisabledIcon(new ImageIcon());
        pic9.setDisabledIcon(new ImageIcon());
-       greyscale.setIcon(new ImageIcon("C:\\Users\\kaiti\\Documents\\DragAndDrop\\images\\greyscalejava.png"));
-       colour.setIcon(new ImageIcon("C:\\Users\\kaiti\\Documents\\DragAndDrop\\images\\colourjava.png"));
+       greyscale.setIcon(new ImageIcon("images/greyscalejava.png"));
+       colour.setIcon(new ImageIcon("images/colourjava.png"));
 
        //sets mouselistener
        MouseListener ml = new MouseListener() {
