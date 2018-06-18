@@ -1,3 +1,9 @@
+/*
+    Author: Kaitlyn Parsons
+    Student Number: 0105186517
+    Known Bugs: None
+    Date: 5/6/2018
+ */
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

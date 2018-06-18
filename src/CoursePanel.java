@@ -1,3 +1,9 @@
+/*
+    Author: Nathan Robertson
+    Student Number: 0100623918
+    Known Bugs: None
+    Date: 15/5/2018
+ */
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -24,9 +30,7 @@ public class CoursePanel extends JPanel {
     public static JLabel courseTitle = new JLabel("", JLabel.CENTER);
     public static JButton selectCourseBtn = new JButton();
     public static JButton helpBtn = new JButton();
-    public static JPanel helpPanel = new JPanel();
-    public static JButton closeBtn = new JButton();
-    public static JLabel help = new JLabel();
+    public static HelpPanel helpPanel = new HelpPanel();
 
     //The units table
     public static DefaultTableModel model;
@@ -49,9 +53,6 @@ public class CoursePanel extends JPanel {
     public static BufferedImage selectBtn_Selected;
     public static BufferedImage helpBtn_Unselected;
     public static BufferedImage helpBtn_Selected;
-    public static BufferedImage closeBtn_Unselected;
-    public static BufferedImage closeBtn_Selected;
-    public static BufferedImage helpImg;
 
     //The Selected industry ID
     public static int selectedIndustryID = 0;
@@ -83,13 +84,6 @@ public class CoursePanel extends JPanel {
             //Help Button Images
             helpBtn_Unselected = ImageIO.read(new File("images/Help_Unselected.png"));
             helpBtn_Selected = ImageIO.read(new File("images/Help_Selected.png"));
-
-            //Close Button Images
-            closeBtn_Unselected = ImageIO.read(new File("images/Close_Unselected.png"));
-            closeBtn_Selected = ImageIO.read(new File("images/Close_Selected.png"));
-
-            //Help Image
-            helpImg = ImageIO.read(new File("images/Help.png"));
 
         } catch (Exception ex) {
 
@@ -351,35 +345,10 @@ public class CoursePanel extends JPanel {
                 ShowHelp();
             }
         });
-
-        //Help Panel
-        helpPanel.setBounds(0, 0, 900, 650);
-        helpPanel.setBackground(new Color(255,255,255));
-        helpPanel.setVisible(false);
-
-        //Close Button
-        closeBtn.setBounds(825,25,50,50);
-        closeBtn.setIcon(new ImageIcon(closeBtn_Unselected));
-        closeBtn.setRolloverIcon(new ImageIcon(closeBtn_Selected));
-        closeBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        closeBtn.setOpaque(false);
-        closeBtn.setContentAreaFilled(false);
-        closeBtn.setBorderPainted(false);
-        closeBtn.addActionListener (new ActionListener() {
-            //Called when an item has been selected
-            public void actionPerformed(ActionEvent e) {
-                HideHelp();
-            }
-        });
-
-        //Help
-        help.setBounds(50,50, 800, 600);
-        help.setIcon(new ImageIcon(helpImg));
     }
 
     //Add the Components
     public static void addComponents(){
-
         header.add(industryText);
         header.add(industryInput);
         header.add(courseText);
@@ -390,10 +359,7 @@ public class CoursePanel extends JPanel {
         content.add(unitTable);
         content.add(selectCourseBtn);
         content.setLayout(new BorderLayout());
-        helpPanel.add(closeBtn);
-        helpPanel.add(help);
-        helpPanel.setLayout(new BorderLayout());
-        panel.add(helpPanel);
+        panel.add(helpPanel.panel);
         panel.add(header);
         panel.add(content);
         panel.setLayout(new BorderLayout());
@@ -403,12 +369,12 @@ public class CoursePanel extends JPanel {
     public static void ShowHelp(){
         header.setVisible(false);
         content.setVisible(false);
-        helpPanel.setVisible(true);
+        helpPanel.panel.setVisible(true);
     }
 
     //Hide the Help Panel
     public static void HideHelp(){
-        helpPanel.setVisible(false);
+        helpPanel.panel.setVisible(false);
         header.setVisible(true);
         content.setVisible(true);
     }

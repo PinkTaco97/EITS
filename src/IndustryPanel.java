@@ -1,3 +1,9 @@
+/*
+    Author: Nathan Robertson
+    Student Number: 0100623918
+    Known Bugs: None
+    Date: 15/5/2018
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class IndustryPanel {
+public class IndustryPanel extends JPanel {
 
     //GUI Components
     public static JPanel panel = new JPanel();

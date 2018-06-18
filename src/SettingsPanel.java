@@ -1,3 +1,9 @@
+/*
+    Author: Liana Taylor
+    Student Number: 6104841617
+    Known Bugs: None
+    Date: 5/6/2018
+ */
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

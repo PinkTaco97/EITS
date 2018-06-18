@@ -1,4 +1,9 @@
-import javax.swing.*;
+/*
+    Author: Nathan Robertson
+    Student Number: 0100623918
+    Known Bugs: None
+    Date: 15/5/2018
+ */
 import java.net.InetAddress;
 import java.sql.*;
 import java.util.Date;

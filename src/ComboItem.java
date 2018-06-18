@@ -1,3 +1,9 @@
+/*
+    Author: Nathan Robertson
+    Student Number: 0100623918
+    Known Bugs: None
+    Date: 15/5/2018
+ */
 public class ComboItem extends Object {
 
     //ID

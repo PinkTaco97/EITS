@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 14, 2018 at 02:13 PM
+-- Generation Time: Jun 18, 2018 at 10:27 AM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -453,12 +453,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `Username`, `Password`, `Email`, `CourseID`, `Access`, `LastLoggedIn`, `Active`, `IPAddress`) VALUES
-(1, 'admin', 'admin', 'admin@example.com', 1, 0, 'Thu Jun 14 13:17:32 AEST 2018', 0, '172.17.120.232'),
-(2, 'Nathan', 'nathan', 'nathan@example.com', NULL, 2, '', 0, ''),
+(1, 'admin', 'admin', 'admin@example.com', 1, 0, 'Mon Jun 18 08:49:16 AEST 2018', 0, '172.17.120.200'),
+(2, 'Nathan', 'nathan', 'nathan@example.com', 17, 2, 'Mon Jun 18 10:02:33 AEST 2018', 1, '172.17.120.200'),
 (3, 'Liana', 'liana', 'liana@example.com', NULL, 2, '', 0, ''),
 (4, 'Kaitlyn', 'kaitlyn', 'kaitlyn@example.com', 6, 2, 'Thu Jun 14 13:20:17 AEST 2018', 1, '172.17.120.232'),
 (5, 'Rani', 'rani', 'rani@example.com', NULL, 2, '', 0, ''),
-(6, 'staff', 'staff', 'staff@example.com', NULL, 1, 'Thu Jun 14 08:36:10 AEST 2018', 1, '172.17.120.232');
+(6, 'staff', 'staff', 'staff@example.com', NULL, 1, 'Mon Jun 18 08:50:54 AEST 2018', 0, '172.17.120.200');
 
 --
 -- Indexes for dumped tables
